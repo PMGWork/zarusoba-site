@@ -12,7 +12,6 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -21,8 +20,7 @@ export default {
     ],
     script: [
       { src: 'https://unpkg.com/scrollbooster@2/dist/scrollbooster.min.js', defer: true },
-      { src: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r125/three.min.js', defer: true },
-      { src: '/js/luxy.js', defer: true }
+      { src: '/js/luxy.js', defer: true },
     ]
   },
 

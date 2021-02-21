@@ -32,7 +32,8 @@
 			targets : '.luxy-el',
 			wrapperSpeed: 0.1,
 			targetSpeed: 0.02,
-			targetPercentage: 0.1
+			targetPercentage: 0.1,
+			scrollY: true,
 		};
 
  		var requestAnimationFrame =
@@ -78,14 +79,18 @@
 			this.TargetsLength = 0;
 			this.wrapper = '';
 			this.windowHeight = 0;
+			this.windowWidth = 0
 			this.wapperOffset = 0;
+			this.active = false;
 		};
 		Luxy.prototype = {
+
 			isAnimate: false,
 			isResize : false,
 			scrollId: "",
 			resizeId: "",
 			init : function(options){
+				this.active = true;
 				this.settings = extend(defaults, options || {});
 				this.wrapper = document.querySelector(this.settings.wrapper);
 
@@ -93,9 +98,14 @@
 					return false;
 				}
 				this.targets = document.querySelectorAll(this.settings.targets);
-				document.body.style.height = this.wrapper.clientHeight + 'px';
+				if (this.settings.scrollY) {
+					document.body.style.height = document.body.clientHeight + 'px';
+					this.windowHeight = document.body.clientHeight;
+				} else {
+					document.body.style.height = document.body.scrollWidth + 'px';
+					this.windowWidth = document.body.scrollWidth;
+				}
 
-				this.windowHeight = window.clientHeight;
 				this.attachEvent();
 				this.apply(this.targets,this.wrapper);
 				this.animate();
@@ -117,7 +127,11 @@
 				}
 			},
 			wrapperInit: function(){
-				this.wrapper.style.width = '100%';
+				if (this.settings.scrollY) {
+					this.wrapper.style.width = '100%';
+				} else {
+					this.wrapper.style.height = '100%';
+				}
 				this.wrapper.style.position = 'fixed';
 			},
 			targetsInit: function(elm,attr){
@@ -136,7 +150,11 @@
 			scroll : function(){
 				var scrollTopTmp = document.documentElement.scrollTop || document.body.scrollTop;
 				this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-				var offsetBottom = this.scrollTop + this.windowHeight;
+				if (this.settings.scrollY) {
+					var offsetBottom = this.scrollTop + this.windowHeight;
+				} else {
+					var offsetBottom = this.scrollTop + this.windowWidth;
+				}
 				this.wrapperUpdate(this.scrollTop);
 				for (var i = 0; i < this.Targets.length; i++) {
 					this.targetsUpdate(this.Targets[i]);
@@ -149,7 +167,12 @@
 			wrapperUpdate : function(){
 
 				this.wapperOffset += (this.scrollTop - this.wapperOffset) * this.settings.wrapperSpeed;
-				this.wrapper.style.transform = 'translate3d(' + 0 + ',' +  Math.round(-this.wapperOffset* 100) / 100 + 'px ,' + 0 + ')';
+				if (this.settings.scrollY) {
+					this.wrapper.style.transform = 'translate3d(' + 0 + ',' +  Math.round(-this.wapperOffset* 100) / 100 + 'px ,' + 0 + ')';
+				} else {
+					this.wrapper.style.transform = 'translate3d(' +  Math.round(-this.wapperOffset* 100) / 100 + 'px ,' + 0 + ',' + 0 + ')';
+				}
+
 			},
 			targetsUpdate : function(target){
 				target.top += (this.scrollTop * Number(this.settings.targetSpeed) * Number(target.speedY) - target.top) * this.settings.targetPercentage;
@@ -165,10 +188,18 @@
 			},
 			resize: function(){
 				var self = this;
-				self.windowHeight = (window.innerHeight || document.documentElement.clientHeight || 0);
-				if( parseInt(self.wrapper.clientHeight) != parseInt(document.body.style.height)){
-					document.body.style.height = self.wrapper.clientHeight + 'px';
+				if (this.settings.scrollY) {
+					self.windowHeight = (window.innerHeight || document.documentElement.clientHeight || 0);
+					if( parseInt(self.wrapper.clientHeight) != parseInt(document.body.style.height)){
+						document.body.style.height = self.wrapper.clientHeight + 'px';
+					}
+				} else {
+					self.windowWidth = (window.innerWidth || document.documentElement.clientWidth || 0);
+					if( parseInt(self.wrapper.scrollWidth) != parseInt(document.body.style.height)){
+						document.body.style.height = self.wrapper.scrollWidth + 'px';
+					}
 				}
+
 				self.resizeId = requestAnimationFrame(self.resize.bind(self));
 			},
 			attachEvent : function(){
@@ -188,19 +219,29 @@
 
 			},
 			cancel: function() {
-				cancelAnimationFrame(this.resizeId);
-				cancelAnimationFrame(this.scrollId);
-				this.wrapper.removeAttribute('style');
-				for (var i = 0; i < this.Targets.length; i++) {
-					this.Targets[i].elm.removeAttribute('style');
+				if (this.active) {
+					cancelAnimationFrame(this.resizeId);
+					cancelAnimationFrame(this.scrollId);
+
+					window.removeEventListener('resize', this.resize);
+					this.wrapper.removeAttribute('style');
+					document.body.removeAttribute('style');
+
+					for (var i = 0; i < this.Targets.length; i++) {
+						this.Targets[i].elm.removeAttribute('style');
+					}
+
+					this.active = false;
+					this.wrapper = '';
+					this.Targets = [];
+					this.windowHeight = 0;
+					this.windowWidth = 0;
+					this.wapperOffset = 0;
+					this.isResize = false;
+					this.scrollId = "";
+					this.resizeId = "";
 				}
-				this.wrapper = '';
-				this.Targets = [];
-				this.windowHeight = 0;
-				this.wapperOffset = 0;
-				this.isResize = false;
-				this.scrollId = "";
-				this.resizeId = "";
+
 			},
 		};
 

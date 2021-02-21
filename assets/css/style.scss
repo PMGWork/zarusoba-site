@@ -8,6 +8,15 @@ $color-gray: #C8C8C8;
 $color-gray2: #DCDCDC;
 $color-gray3: #909090;
 
+$font-size1: 120px;
+$font-size2: 90px;
+$font-size3: 60px;
+$font-size4: 45px;
+$font-size5: 30px;
+$font-size6: 24px;
+
+$width1: 5vw;
+
 @mixin md {
     @media only screen and (max-width: $media-md) {
         @content;
@@ -57,6 +66,47 @@ a {
     text-decoration: none;
     color: inherit;
 }
+ul {
+    margin: 0;
+}
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+.loading {
+    position: fixed;
+    width: 34%;
+    height: 100vh;
+    pointer-events: none;
+    background: $color-blue;
+    z-index: 999999999999999;
+    transform: scale(1,0);
+    transform-origin: top;
+}
+#loading1 {
+    left: 0;
+    transition: transform cubic-bezier(.6,.2,0,1) 1.2s;
+}
+#loading2 {
+    left: 33.5%;
+    transition: transform cubic-bezier(.6,.2,0,1) 1.2s .15s;
+}
+#loading3 {
+    left: 67%;
+    transition: transform cubic-bezier(.6,.2,0,1) 1.2s .3s;
+}
+.page-enter-active, .page-leave-active {
+    transition: all 1.5s
+}
+.page-enter .loading, .page-leave-active .loading {
+    transform: scale(1,1);
+    transform-origin: bottom;
+}
+
+.scroll-target {
+    position: absolute;
+}
 
 body {
     position: relative;
@@ -68,7 +118,6 @@ body {
     font-weight: 500;
     line-height: 1.2;
     letter-spacing: .04em;
-    overflow-x: hidden;
 
     -webkit-user-select: none;
     user-select: none;
@@ -82,70 +131,122 @@ header {
     z-index: 1000;
     .header-logo {
         height: 60px;
-        margin: 40px 60px;
+        position: fixed;
+        top: 40px;
+        left: $width1;
+        transition: opacity .3s;
+    }
+    .header-logo:hover {
+        opacity: .5;
     }
     ul {
         font-family: "inter", "Noto Sans JP", sans-serif;
         position: fixed;
         top: 60px;
-        right: 60px;
+        right: $width1;
         margin: 0;
         li {
             margin-left: 40px;
             display: inline-block;
-            text-decoration: none;
+            a {
+                transition: all .3s;
+            }
+            a:hover {
+                opacity: .5;
+            }
         }
     }
 }
 
 .main {
-    margin: 130px auto 300px;
+    padding-top: 130px;
+    margin: 0 auto 300px;
     .main-block {
         position: absolute;
         width: 100%;
         height: 90vh;
-        z-index: 1;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        font-size: 36px;
+        font-size: $font-size5;
         letter-spacing: .2em;
         transform: rotateZ(90deg);
         :nth-child(4) {
-            transform: translateX(-60px);
+            margin-left: -120px;
+            animation: GenreAnim 1s 1.4s cubic-bezier(.6,.2,0,1) both;
         }
         :nth-child(3) {
-            transform: translateX(100px);
+            margin-left: 200px;
+            animation: GenreAnim 1s 1.6s cubic-bezier(.6,.2,0,1) both;
         }
         :nth-child(2) {
-            transform: translateX(-80px);
+            margin-left: -160px;
+            animation: GenreAnim 1s 1.8s cubic-bezier(.6,.2,0,1) both;
         }
+        :nth-child(1) {
+            animation: GenreAnim 1s 2s cubic-bezier(.6,.2,0,1) both;
+        }
+
+        @keyframes GenreAnim {
+            from {
+                transform: translateX(-100px);
+                clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+            }
+            to {
+                transform: translateX(0px);
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+
         p {
-            background: #fff;
+            position: relative;
             margin: 8vw 0;
             padding: 10px 100px;
+            background: #fff;
         }
     }
     .main-title {
-        padding: 0 60px;
+        position: relative;
+        z-index: -2;
         color: $color-blue;
-        :nth-child(2) {
+
+        :nth-child(1) p {
+            margin-left: $width1;
+            animation: TitleAnim .8s .5s cubic-bezier(0,.7,.3,1) both;
+        }
+        :nth-child(2) p {
             margin-left: 15vw;
+            animation: TitleAnim .8s .75s cubic-bezier(0,.7,.3,1) both;
         }
-        :nth-child(3) {
+        :nth-child(3) p {
             margin-left: -20vw;
+            animation: TitleAnim .8s 1s cubic-bezier(0,.7,.3,1) both;
         }
-        :nth-child(4) {
+        :nth-child(4) p {
             margin-left: 4vw;
+            animation: TitleAnim .8s 1.25s cubic-bezier(0,.7,.3,1) both;
+        }
+
+        @keyframes TitleAnim {
+            from {
+                transform: translateY(250px);
+            }
+            to {
+                transform: translateY(0px);
+            }
+        }
+
+        .title-block {
+            overflow: hidden;
+            .title {
+                font-size: 200px;
+                text-align: center;
+            }
         }
         p {
             font-size: 50px;
             font-weight: 400;
-        }
-        .title {
-            font-size: 200px;
-            text-align: center;
         }
         .light {
             font-weight: 300;
@@ -171,6 +272,7 @@ header {
     background: #fff;
     .about-top {
         position: absolute;
+        display: inline-block;
         left: 0;
         right: 0;
         margin: -60px auto;
@@ -181,15 +283,23 @@ header {
             margin: 0 auto;
             background: $color-black;
             border-radius: 100%;
+            transition: transform cubic-bezier(0,.5,.5,1) .5s;
+            .arrow {
+                font-size: $font-size3;
+                text-align: center;
+                line-height: 120px;
+                color: $color-white;
+                transition: transform cubic-bezier(0,.5,.5,1) .5s;
+            }
         }
-        .top-btn p {
-            font-size: 64px;
-            text-align: center;
-            line-height: 120px;
-            color: $color-white;
+        .top-btn:hover {
+            transform: translateY(10px) scale(1.1);
+            .arrow {
+                transform: translateY(20px);
+            }
         }
         .top-item {
-            font-size: 32px;
+            font-size: $font-size5;
             text-align: center;
             margin-top: 30px;
         }
@@ -212,6 +322,7 @@ header {
             white-space: nowrap;
             letter-spacing: .1em;
             margin: -150px 0;
+            text-transform: uppercase;
         }
     }
     .about-title {
@@ -219,67 +330,115 @@ header {
         text-align: center;
         line-height: 1.5;
         .subtitle {
-            font-size: 32px;
+            font-size: $font-size5;
+            .in-view {
+
+            }
         }
         .title {
-            font-size: 64px;
+            font-size: $font-size3;
         }
     }
     .about-content {
-        max-width: 1280px;
-        padding: 150px 60px 300px;
-        margin: 0 auto;
+        padding: 200px $width1 300px 0;
         display: flex;
-        justify-content: flex-end;
+        align-items: center;
+        .content-img {
+            position: relative;
+            width: 80%;
+            height: 800px;
+            margin-right: 15vw;
+            overflow: hidden;
+            background: $color-white;
+            video {
+                position: absolute;
+                height: 100%;
+                width: auto;
+                margin: auto;
+                vertical-align: top;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+        }
         .content-txt {
-            font-size: 24px;
+            font-size: $font-size6;
             line-height: 2.5;
             display: inline-block;
+            width: 900px;
             .em {
-                font-size: 32px;
+                font-size: $font-size5;
                 color: $color-blue;
             }
         }
     }
 }
 .projects {
-    padding: 60px;
-    margin: 240px auto;
+    padding: 60px $width1;
+    margin: 240px auto 160px;
     .projects-title {
         display: flex;
         .number {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: $font-size6;
         }
         .title {
             margin-left: 30px;
-            font-size: 96px;
+            font-size: $font-size2;
         }
     }
     .projects-content {
-        margin-top: 180px;
+        padding: 240px 0 80px;
+        &:nth-child(2n) {
+            .content-item {
+                margin: 0 0 16px auto;
+            }
+            .content-img {
+                :nth-child(1) img {
+                    transform: translate(40px, 20px) rotateZ(-15deg);
+                }
+                :nth-child(2) img {
+                    transform: translate(420px, 180px) rotateZ(20deg);
+                    z-index: 1;
+                }
+                :nth-child(3) img {
+                    transform: translate(160px, 350px) rotateZ(-5deg);
+                    z-index: 2;
+                }
+            }
+        }
+        &:nth-child(2n-1) {
+            .content-item {
+                margin: 0 0 16px 0;
+            }
+            .content-img {
+                float: right;
+                :nth-child(1) img {
+                    transform: translate(60px, 0px) rotateZ(5deg);
+                }
+                :nth-child(2) img {
+                    transform: translate(360px, 160px) rotateZ(-10deg);
+                    z-index: 1;
+                }
+                :nth-child(3) img {
+                    transform: translate(120px, 300px) rotateZ(15deg);
+                    z-index: 2;
+                }
+            }
+        }
         .content-img {
-            img {
-                position: absolute;
-            }
-            .square {
-                width: 300px;
-                height: 300px;
-            }
-            :nth-child(1) {
-                transform: translate(40px, 20px) rotateZ(-15deg);
-            }
-            :nth-child(2) {
-                transform: translate(420px, 180px) rotateZ(20deg);
-                z-index: 1;
-            }
-            :nth-child(3) {
-                transform: translate(160px, 350px) rotateZ(-5deg);
-                z-index: 2;
+            width: 750px;
+            .img-block {
+                img {
+                    position: absolute;
+                }
+                .square {
+                    width: 300px;
+                    height: 300px;
+                }
             }
         }
         .content-item {
-            margin: 0 0 16px auto;
             width: 400px;
             .slider {
                 padding-bottom: 30px;
@@ -287,7 +446,7 @@ header {
                 display: flex;
                 align-items: flex-end;
                 .number {
-                    font-size: 96px;
+                    font-size: $font-size2;
                     color: $color-blue;
                 }
                 .slider-wrapper {
@@ -299,60 +458,66 @@ header {
                 }
             }
             .title {
-                font-size: 64px;
+                font-size: $font-size3;
                 padding-top: 30px;
             }
         }
         .parallax-txt {
+            position: relative;
             color: $color-gray2;
             font-size: 256px;
             font-weight: 300;
             white-space: nowrap;
             letter-spacing: .1em;
             margin: 30px 0;
+            z-index: -1;
+            text-transform: uppercase;
         }
     }
 }
 .edz {
-    padding: 60px;
+    padding: 60px $width1;
     margin: 180px auto;
     .edz-title {
         display: flex;
         justify-content: flex-end;
-        .all {
-            align-self: flex-end;
-            margin: 0 auto 20px 0;
-        }
         .number {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: $font-size6;
         }
         .title {
             margin-left: 30px;
-            font-size: 96px;
+            font-size: $font-size2;
         }
     }
     .edz-wrapper {
         display: flex;
         margin-top: 150px;
         .edz-article {
-            margin-right: 60px;
+            margin-right: 80px;
             .article-img {
                 position: relative;
+                overflow: hidden;
                 .number {
                     position: absolute;
                     color: $color-white;
-                    font-size: 64px;
+                    font-size: $font-size3;
                     margin: 10px 20px;
+                    z-index: 1;
                 }
                 img {
                     width: auto;
                     height: 360px;
+                    vertical-align: top;
+                    transition: transform cubic-bezier(0,.5,.5,1) .5s;
+                }
+                img:hover {
+                    transform: scale(1.15);
                 }
             }
             .article-title {
                 margin-top: 30px;
-                font-size: 48px;
+                font-size: $font-size4;
             }
             .article-subtitle {
                 margin-top: 20px;
@@ -366,15 +531,23 @@ header {
                 margin: 0 auto;
                 background: $color-black;
                 border-radius: 100%;
+                transition: transform cubic-bezier(0,.5,.3,1) .5s;
+                .arrow {
+                    font-size: $font-size3;
+                    text-align: center;
+                    line-height: 120px;
+                    color: $color-white;
+                    transition: transform cubic-bezier(0,.5,.3,1) .5s;
+                }
             }
-            .all-btn p {
-                font-size: 64px;
-                text-align: center;
-                line-height: 120px;
-                color: $color-white;
+            .all-btn:hover {
+                transform: translateX(10px) scale(1.1);
+                .arrow {
+                    transform: translateX(20px);
+                }
             }
             .all-item {
-                font-size: 32px;
+                font-size: $font-size5;
                 text-align: center;
                 margin-top: 30px;
             }
@@ -382,18 +555,19 @@ header {
     }
 }
 .members {
-    padding: 60px;
+    padding: 60px $width1;
     margin: 180px auto 240px;
     .members-title {
         display: flex;
         .number {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: $font-size6;
         }
         .title {
             margin-left: 30px;
             font-size: 96px;
         }
+
     }
     .members-wrapper {
         margin-top: 100px;
@@ -409,7 +583,7 @@ header {
                 margin-left: 30px;
             }
             .content-title {
-                font-size: 64px;
+                font-size: $font-size3;
                 margin-left: 60px;
                 width: 300px;
             }
@@ -422,7 +596,7 @@ header {
 }
 .contact {
     display: flex;
-    padding: 300px 60px 150px;
+    padding: 300px $width1 150px;
     margin: 0 auto;
     background: $color-black;
     color: $color-white;
@@ -430,10 +604,10 @@ header {
         display: flex;
         .number {
             margin-top: 20px;
-            font-size: 24px;
+            font-size: $font-size6;
         }
         .title {
-            margin-left: 30px;
+            margin: 0 60px 0 30px;
             font-size: 96px;
         }
     }
@@ -442,15 +616,33 @@ header {
         .content-item {
             margin-bottom: 60px;
             .title {
+                position: relative;
+                display: inline-block;
                 margin-top: 20px;
-                font-size: 32px;
+                font-size: $font-size5;
+            }
+            .title::after {
+                content: '';
+                position: absolute;
+                bottom: -8px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: $color-white;
+                transform: scale(0, 1);
+                transform-origin: right top;
+                transition: transform cubic-bezier(.7, 0, .3, 1) .8s;
+            }
+            .title:hover::after {
+                transform-origin: left top;
+                transform: scale(1, 1);
             }
         }
     }
 }
 footer {
     height: 80px;
-    padding: 0 60px;
+    padding: 0 $width1;
     margin-top: -80px;
     display: flex;
     align-items: center;
@@ -459,3 +651,188 @@ footer {
         margin: 0 0 0 auto;
     }
 }
+
+.edz2 {
+    padding: 0 $width1;
+    height: 100vh;
+    position: relative;
+    .edz-wrapper {
+        position: absolute;
+        bottom: 18vh;
+        display: flex;
+        .edz-title {
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 240px;
+            .all {
+                align-self: flex-end;
+                margin: 0 auto 20px 0;
+            }
+            .number-block {
+                overflow: hidden;
+                height: 40px;
+                .number {
+                    font-size: 32px;
+                    animation: TitleAnim3 .8s .5s cubic-bezier(0,.7,.3,1) both;
+                }
+            }
+            .title-block {
+                .block {
+                    overflow: hidden;
+                }
+                .title {
+                    margin: -30px 0 0 50px;
+                    font-size: $font-size1;
+                    .block {
+                        p {
+                            animation: TitleAnim2 .8s cubic-bezier(0,.7,.3,1) both;
+                        }
+                        @for $i from 1 through 5 {
+                            &:nth-child(#{$i}) p {
+                                animation-delay: 0.25s * $i + .5s;
+                            }
+                        }
+                    }
+                    @keyframes TitleAnim2 {
+                        from {
+                            transform: translateY(160px);
+                        }
+                        to {
+                            transform: translateY(0px);
+                        }
+                    }
+                }
+                ul {
+                    margin-top: 90px;
+                    line-height: 2;
+                    color: $color-gray;
+                    .block {
+                        p {
+                            display: inline-block;
+                            transition: all .3s;
+                            animation: TitleAnim2 .8s cubic-bezier(0,.7,.3,1) both;
+                        }
+                        p:hover {
+                            color: $color-black;
+                        }
+                        @for $i from 1 through 10 {
+                            &:nth-child(#{$i}) p {
+                                animation-delay: 0.15s * $i + 1s;
+                            }
+                        }
+                    }
+                    @keyframes TitleAnim3 {
+                        from {
+                            transform: translateY(40px);
+                        }
+                        to {
+                            transform: translateY(0px);
+                        }
+                    }
+                }
+            }
+        }
+        .edz-article {
+            margin-right: 80px;
+            animation: ArticleAnim .8s cubic-bezier(0,.7,.3,1) both;
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    animation-delay: .2s * $i + 1.6s;
+                }
+            }
+            @keyframes ArticleAnim {
+                from {
+                    opacity: 0;
+                    transform: translateX(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0px);
+                }
+            }
+            .article-img {
+                position: relative;
+                overflow: hidden;
+                .number {
+                    position: absolute;
+                    color: $color-white;
+                    font-size: $font-size3;
+                    margin: 10px 20px;
+                    z-index: 1;
+                }
+                img {
+                    width: auto;
+                    height: 360px;
+                    vertical-align: top;
+                    transition: transform cubic-bezier(0,.5,.5,1) .5s;
+                }
+                img:hover {
+                    transform: scale(1.15);
+                }
+            }
+            .article-title {
+                margin-top: 30px;
+                font-size: $font-size4;
+            }
+            .article-subtitle {
+                margin-top: 20px;
+            }
+        }
+        .article-all {
+            margin: 120px 0 0 $width1;
+            .all-btn {
+                width: 120px;
+                height: 120px;
+                margin: 0 auto;
+                background: $color-black;
+                border-radius: 100%;
+                transition: transform cubic-bezier(0,.5,.3,1) .5s;
+                .arrow {
+                    font-size: $font-size3;
+                    text-align: center;
+                    line-height: 120px;
+                    color: $color-white;
+                    transition: transform cubic-bezier(0,.5,.3,1) .5s;
+                }
+            }
+            .all-btn:hover {
+                transform: translateX(-10px) scale(1.1);
+                .arrow {
+                    transform: translateX(-20px);
+                }
+            }
+            .all-item {
+                font-size: $font-size5;
+                text-align: center;
+                margin-top: 30px;
+            }
+        }
+    }
+    #scrollbar-hrz,#scrollbar-hrz1 {
+        position: fixed;
+        bottom: 8%;
+        margin: 0 80px;
+        height: 2px;
+        width: calc(100vw - 300px);
+        transform-origin: 0% 50%;
+        background: #E0E0E0;
+    }
+    #scrollbar-hrz {
+        background: #181818;
+        z-index: 5;
+        transition: transform .6s cubic-bezier(.3,.3,.2,1);
+        transform: scale(0,1);
+    }
+    #scrollbar-hrz1 {
+        animation: ScrollAnim 1.2s 2s cubic-bezier(.6,.2,0,1) both;
+    }
+    @keyframes ScrollAnim {
+        from {
+            transform: scale(0,1);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+}
+
