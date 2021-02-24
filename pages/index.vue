@@ -20,7 +20,7 @@
             <h5>MOVIE</h5>
             <h5>DESIGN</h5>
         </div>
-        <h1 class="main-title">
+        <div class="main-title">
             <div class="title-block">
                 <p>We are,</p>
             </div>
@@ -33,7 +33,7 @@
             <div class="luxy-el title-block" data-horizontal="1" data-speed-x="5">
                 <p class="title light italic">Works.</p>
             </div>
-        </h1>
+        </div>
     </div>
     <div class="about">
         <div class="background"></div>
@@ -54,10 +54,10 @@
             </div>
             <p class="luxy-el parallax-txt" data-horizontal="1" data-speed-x="-8">WHAT IS WHAT IS</p>
         </div>
-        <h2 id="about" class="about-title">
+        <div id="about" class="about-title">
             <h5 class="subtitle scroll">What is</h5>
             <h3 class="title scroll">"Zarusoba DesignWorks"</h3>
-        </h2>
+        </div>
         <div class="about-content">
             <div class="content-img">
                 <video
