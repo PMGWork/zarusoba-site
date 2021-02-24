@@ -15,10 +15,10 @@
 <div id="luxy">
     <div id="top" class="main">
         <div class="main-block">
-            <p>OTHER</p>
-            <p>GRAPHIC</p>
-            <p>MOVIE</p>
-            <p>DESIGN</p>
+            <h5>OTHER</h5>
+            <h5>GRAPHIC</h5>
+            <h5>MOVIE</h5>
+            <h5>DESIGN</h5>
         </div>
         <h1 class="main-title">
             <div class="title-block">
@@ -38,12 +38,12 @@
     <div class="about">
         <div class="background"></div>
         <div class="about-top">
-            <div class="top-btn">
+            <div class="btn">
                 <nuxt-link v-scroll-to="'#about'" to>
-                    <p class="arrow">↓</p>
+                    <h3 class="arrow">↓</h3>
                 </nuxt-link>
             </div>
-            <p class="top-item">scroll</p>
+            <h5 class="top-item">scroll</h5>
         </div>
         <div class="about-img">
             <div class="luxy-el img-wrapper" data-horizontal="1" data-speed-x="-4">
@@ -55,8 +55,8 @@
             <p class="luxy-el parallax-txt" data-horizontal="1" data-speed-x="-8">WHAT IS WHAT IS</p>
         </div>
         <h2 id="about" class="about-title">
-            <p class="subtitle scroll">What is</p>
-            <p class="title scroll">"Zarusoba DesignWorks"</p>
+            <h5 class="subtitle scroll">What is</h5>
+            <h3 class="title scroll">"Zarusoba DesignWorks"</h3>
         </h2>
         <div class="about-content">
             <div class="content-img">
@@ -83,10 +83,10 @@
         </div>
     </div>
     <div id="projects" class="projects">
-        <h2 class="projects-title">
-            <p class="number">01</p>
-            <p class="title">Projects</p>
-        </h2>
+        <div class="projects-title">
+            <h6 class="number font">01</h6>
+            <h2 class="title">Projects</h2>
+        </div>
         <div class="projects-content" v-for="(project, index) in projects" :key="project.id">
             <div class="content-img">
                 <div class="img-block luxy-el" data-speed-y="2" data-offset="-200">
@@ -129,24 +129,22 @@
                 </div>
             </div>
             <div class="content-item">
-                <div class="slider">
-                    <h3 class="number">0{{ index + 1 }}.</h3>
-                </div>
+                <h2 class="number">0{{ index + 1 }}.</h2>
                 <h3 class="title">{{ project.title }}</h3>
             </div>
             <p class="luxy-el parallax-txt" :style="`padding-left: ${ index * 400 }px;`" data-horizontal="1" data-speed-x="-10">{{ project.title }} {{ project.title }}</p>
         </div>
     </div>
     <div class="edz">
-        <h2 class="edz-title">
-            <p class="number">02</p>
-            <p class="title">Everyday Zarusoba</p>
-        </h2>
+        <div class="edz-title">
+            <h6 class="number font">02</h6>
+            <h2 class="title">Everyday Zarusoba</h2>
+        </div>
         <div class="viewport">
             <div class="edz-wrapper content">
                 <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id">
                     <div class="article-img">
-                        <p class="number">{{index + 1}}</p>
+                        <h3 class="number">{{index + 1}}</h3>
                         <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
                             <img
                                 :src="edz.image.url"
@@ -160,69 +158,79 @@
                             >
                         </a>
                     </div>
-                    <h3 class="article-title">{{ edz.title }}</h3>
-                    <p class="article-subtitle">{{ edz.created }}</p>
+                    <h4 class="article-title">{{ edz.title }}</h4>
+                    <p class="article-subtitle font">{{ edz.created }}</p>
                 </div>
                 <div class="article-all">
                     <nuxt-link class="all" to="/edz">
-                        <div class="all-btn">
-                            <p class="arrow">→</p>
+                        <div class="btn">
+                            <h3 class="arrow">→</h3>
                         </div>
                     </nuxt-link>
-                    <p class="all-item">View all</p>
+                    <h5 class="all-item">View all</h5>
                 </div>
             </div>
         </div>
     </div>
     <div class="members">
-        <h2 class="members-title">
-            <p class="number">03</p>
-            <p class="title">Members</p>
-        </h2>
+        <div class="members-title">
+            <h6 class="number font">03</h6>
+            <h2 class="title">Members</h2>
+        </div>
         <div class="members-wrapper">
             <div class="members-content">
                 <img class="content-logo" src="~/assets/img/seldo.jpg"/>
-                <h3 class="content-title">SELDO</h3>
-                <p class="content-subtitle font">Leader - Design / Motion Graphis / 3DCG</p>
+                <div class="title-block">
+                    <h3 class="content-title">SELDO</h3>
+                    <p class="content-subtitle font">Leader - Design / Motion Graphis / 3DCG</p>
+                </div>
             </div>
             <div class="members-content">
                 <img class="content-logo" src="~/assets/img/sakurai.jpg"/>
-                <h3 class="content-title">桜井貴志</h3>
-                <p class="content-subtitle font">Member - Motion Graphis / 3DCG</p>
+                <div class="title-block">
+                    <h3 class="content-title">桜井貴志</h3>
+                    <p class="content-subtitle font">Member - Motion Graphis / 3DCG</p>
+                </div>
             </div>
             <div class="members-content">
                 <img class="content-logo" src="~/assets/img/pixel.jpg"/>
-                <h3 class="content-title">ぴくせる</h3>
-                <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Web Design</p>
+                <div class="title-block">
+                    <h3 class="content-title">ぴくせる</h3>
+                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Web Design</p>
+                </div>
             </div>
             <div class="members-content">
                 <img class="content-logo" src="~/assets/img/cube.jpg"/>
-                <h3 class="content-title">Cube</h3>
-                <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Programming</p>
+                <div class="title-block">
+                    <h3 class="content-title">Cube</h3>
+                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Programming</p>
+                </div>
             </div>
             <div class="members-content">
                 <img class="content-logo" src="~/assets/img/sugar.jpg"/>
-                <h3 class="content-title">Sugar</h3>
-                <p class="content-subtitle font">Member - Motion Graphics / 3DCG</p>
+                <div class="title-block">
+                    <h3 class="content-title">Sugar</h3>
+                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG</p>
+                </div>
             </div>
         </div>
     </div>
     <div id="contact" class="contact">
-        <h2 class="contact-title">
-            <p class="number">04</p>
-            <p class="title">Contact</p>
-        </h2>
+        <div class="contact-title">
+            <h6 class="number font">04</h6>
+            <h2 class="title">Contact</h2>
+        </div>
         <div class="contact-content">
             <div class="content-item">
                 <p class="subtitle font">Mail -</p>
                 <a href="mailto:zarusobadesignworks@gmail.com" target="_blank" aria-label="EMail" rel="noopener noreferrer">
-                    <h3 class="title">zarusobadesignworks@gmail.com</h3>
+                    <h5 class="title">zarusobadesignworks@gmail.com</h5>
                 </a>
             </div>
             <div class="content-item">
                 <p class="subtitle font">Twitter -</p>
                 <a href="https://twitter.com/Z_D_W_" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <h3 class="title">https://twitter.com/Z_D_W_</h3>
+                    <h5 class="title">https://twitter.com/Z_D_W_</h5>
                 </a>
             </div>
         </div>
@@ -296,7 +304,35 @@ export default {
     mounted(){
         //Luxy
         luxy.cancel();
-        luxy.init();
+
+        var _ua = (function(u){
+            return {
+                Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1 && u.indexOf("tablet pc") == -1)
+                    || u.indexOf("ipad") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") == -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("tablet") != -1)
+                    || u.indexOf("kindle") != -1
+                    || u.indexOf("silk") != -1
+                    || u.indexOf("playbook") != -1,
+                Mobile:(u.indexOf("windows") != -1 && u.indexOf("phone") != -1)
+                    || u.indexOf("iphone") != -1
+                    || u.indexOf("ipod") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") != -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("mobile") != -1)
+                    || u.indexOf("blackberry") != -1
+            }
+        })(window.navigator.userAgent.toLowerCase());
+
+        const windowWidth = window.innerWidth
+        if (windowWidth > 960) {
+            if(!_ua.Mobile&&!_ua.Tablet){
+                luxy.init()
+            } else {
+                luxy.init({
+                    wrapperSpeed: 0.5,
+                })
+            }
+        }
 
         //ScrollBooster
         new ScrollBooster({
@@ -304,13 +340,7 @@ export default {
             content: document.querySelector('.content'),
             scrollMode: 'transform',
             direction: 'horizontal',
-
         });
-    },
-    methods: {
-        addOne() {
-            this.number = this.number + 1;
-        }
     }
 }
 </script>

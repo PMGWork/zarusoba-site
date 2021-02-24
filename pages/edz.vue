@@ -17,15 +17,15 @@
         <div class="edz-wrapper">
             <div class="edz-title">
                 <div class="number-block">
-                    <p class="number">02</p>
+                    <h4 class="number">02</h4>
                 </div>
                 <div class="title-block">
                     <h1 class="title">
                         <div class="block">
-                            <p>Everyday</p>
+                            <h1>Everyday</h1>
                         </div>
                         <div class="block">
-                            <p>Zarusoba</p>
+                            <h1>Zarusoba</h1>
                         </div>
                     </h1>
                     <ul class="font">
@@ -38,7 +38,7 @@
             </div>
             <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id" :id="index + 1">
                 <div class="article-img">
-                    <p class="number">{{index + 1}}</p>
+                    <h3 class="number">{{index + 1}}</h3>
                     <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
                         <img
                             :src="edz.image.url"
@@ -52,16 +52,16 @@
                         >
                     </a>
                 </div>
-                <h3 class="article-title">{{ edz.title }}</h3>
+                <h4 class="article-title">{{ edz.title }}</h4>
                 <p class="article-subtitle font">{{ edz.created }}</p>
             </div>
             <div class="article-all">
                 <nuxt-link class="all" v-scroll-to="'#top'" to>
-                    <div class="all-btn">
-                        <p class="arrow">←</p>
+                    <div class="btn">
+                        <h3 class="arrow">←</h3>
                     </div>
                 </nuxt-link>
-                <p class="all-item">Top</p>
+                <h5 class="all-item">Top</h5>
             </div>
         </div>
     </div>
@@ -102,11 +102,39 @@ export default {
         }
     },
     mounted(){
+        //Luxy
         luxy.cancel();
-        luxy.init({
-            scrollY: false
-        })
 
+        var _ua = (function(u){
+            return {
+                Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1 && u.indexOf("tablet pc") == -1)
+                    || u.indexOf("ipad") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") == -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("tablet") != -1)
+                    || u.indexOf("kindle") != -1
+                    || u.indexOf("silk") != -1
+                    || u.indexOf("playbook") != -1,
+                Mobile:(u.indexOf("windows") != -1 && u.indexOf("phone") != -1)
+                    || u.indexOf("iphone") != -1
+                    || u.indexOf("ipod") != -1
+                    || (u.indexOf("android") != -1 && u.indexOf("mobile") != -1)
+                    || (u.indexOf("firefox") != -1 && u.indexOf("mobile") != -1)
+                    || u.indexOf("blackberry") != -1
+            }
+        })(window.navigator.userAgent.toLowerCase());
+
+        if(!_ua.Mobile&&!_ua.Tablet){
+            luxy.init({
+                scrollY: false
+            })
+        } else {
+            luxy.init({
+                scrollY: false,
+                wrapperSpeed: 0.5,
+            })
+        }
+
+        //Scroll
         const scroll1 = document.getElementById('20')
         const scroll2 = document.getElementById('40')
         const scroll3 = document.getElementById('60')
@@ -126,11 +154,18 @@ export default {
             document.getElementById('scroll3').style.top = px3 + 'px';
         }
 
+        //Scrollbar
         window.addEventListener('scroll', this.scrollbar)
     },
     methods: {
         scrollbar() {
             const scrollbarScale = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
+        },
+        scrollbar2() {
+            var clientRect = document.getElementById('content').getBoundingClientRect();
+            var px = window.pageXOffset + clientRect.left
+            const scrollbarScale = px / (document.getElementById('content').clientWidth - window.innerHeight);
             document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
         },
     }

@@ -102,7 +102,7 @@
 					document.body.style.height = document.body.clientHeight + 'px';
 					this.windowHeight = document.body.clientHeight;
 				} else {
-					document.body.style.height = document.body.scrollWidth + 'px';
+					document.body.style.width = document.body.scrollWidth + 'px';
 					this.windowWidth = document.body.scrollWidth;
 				}
 
@@ -148,13 +148,7 @@
 				});
 			},
 			scroll : function(){
-				var scrollTopTmp = document.documentElement.scrollTop || document.body.scrollTop;
 				this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-				if (this.settings.scrollY) {
-					var offsetBottom = this.scrollTop + this.windowHeight;
-				} else {
-					var offsetBottom = this.scrollTop + this.windowWidth;
-				}
 				this.wrapperUpdate(this.scrollTop);
 				for (var i = 0; i < this.Targets.length; i++) {
 					this.targetsUpdate(this.Targets[i]);
@@ -165,14 +159,15 @@
 				this.scrollId = requestAnimationFrame(this.animate.bind(this));
 			},
 			wrapperUpdate : function(){
-
-				this.wapperOffset += (this.scrollTop - this.wapperOffset) * this.settings.wrapperSpeed;
 				if (this.settings.scrollY) {
+					var scrollY = this.scrollTop || window.scrollY;
+					this.wapperOffset += ( scrollY - this.wapperOffset ) * this.settings.wrapperSpeed;
 					this.wrapper.style.transform = 'translate3d(' + 0 + ',' +  Math.round(-this.wapperOffset* 100) / 100 + 'px ,' + 0 + ')';
 				} else {
+					var scrollX = this.scrollTop || window.scrollX;
+					this.wapperOffset += ( scrollX - this.wapperOffset ) * this.settings.wrapperSpeed;
 					this.wrapper.style.transform = 'translate3d(' +  Math.round(-this.wapperOffset* 100) / 100 + 'px ,' + 0 + ',' + 0 + ')';
 				}
-
 			},
 			targetsUpdate : function(target){
 				target.top += (this.scrollTop * Number(this.settings.targetSpeed) * Number(target.speedY) - target.top) * this.settings.targetPercentage;
@@ -195,8 +190,8 @@
 					}
 				} else {
 					self.windowWidth = (window.innerWidth || document.documentElement.clientWidth || 0);
-					if( parseInt(self.wrapper.scrollWidth) != parseInt(document.body.style.height)){
-						document.body.style.height = self.wrapper.scrollWidth + 'px';
+					if( parseInt(self.wrapper.scrollWidth) != parseInt(document.body.style.width)){
+						document.body.style.width = self.wrapper.scrollWidth + 'px';
 					}
 				}
 
