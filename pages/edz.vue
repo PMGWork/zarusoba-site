@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="overflow">
 <div id="loading1" class="loading"></div>
 <div id="loading2" class="loading"></div>
 <div id="loading3" class="loading"></div>
@@ -14,20 +14,20 @@
 <div id="scroll3" class="scroll-target"></div>
 <div id="top" class="edz2">
     <div id="luxy">
-        <div class="edz-wrapper">
+        <div id="scroll" class="edz-wrapper">
             <div class="edz-title">
                 <div class="number-block">
                     <h4 class="number">02</h4>
                 </div>
                 <div class="title-block">
-                    <h1 class="title">
+                    <div class="title">
                         <div class="block">
                             <h1>Everyday</h1>
                         </div>
                         <div class="block">
                             <h1>Zarusoba</h1>
                         </div>
-                    </h1>
+                    </div>
                     <ul class="font">
                         <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll1'" to><p>- 20</p></nuxt-link></li>
                         <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll2'" to><p>- 40</p></nuxt-link></li>
@@ -39,18 +39,20 @@
             <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id" :id="index + 1">
                 <div class="article-img">
                     <h3 class="number">{{index + 1}}</h3>
-                    <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
-                        <img
-                            :src="edz.image.url"
-                            :width="edz.image.width"
-                            :height="edz.image.height"
-                            :alt="edz.title"
-                            loading="lazy"
-                            oncontextmenu="return false;"
-                            onselectstart="return false;"
-                            onmousedown="return false;"
-                        >
-                    </a>
+                    <div class="img-block">
+                        <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
+                            <img
+                                :src="edz.image.url"
+                                :width="edz.image.width"
+                                :height="edz.image.height"
+                                :alt="edz.title"
+                                loading="lazy"
+                                oncontextmenu="return false;"
+                                onselectstart="return false;"
+                                onmousedown="return false;"
+                            >
+                        </a>
+                    </div>
                 </div>
                 <h4 class="article-title">{{ edz.title }}</h4>
                 <p class="article-subtitle font">{{ edz.created }}</p>
@@ -127,11 +129,14 @@ export default {
             luxy.init({
                 scrollY: false
             })
+
+            //Scrollbar
+            window.addEventListener('scroll', this.scrollbar)
         } else {
-            luxy.init({
-                scrollY: false,
-                wrapperSpeed: 0.5,
-            })
+            document.querySelector(".edz-wrapper").style.overflowX = 'scroll';
+
+            //Scrollbar
+            document.getElementById("scroll").addEventListener('scroll', this.scrollbar2)
         }
 
         //Scroll
@@ -153,9 +158,6 @@ export default {
             const px3 = window.scrollX + clientRect3.left;
             document.getElementById('scroll3').style.top = px3 + 'px';
         }
-
-        //Scrollbar
-        window.addEventListener('scroll', this.scrollbar)
     },
     methods: {
         scrollbar() {
@@ -163,11 +165,10 @@ export default {
             document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
         },
         scrollbar2() {
-            var clientRect = document.getElementById('content').getBoundingClientRect();
-            var px = window.pageXOffset + clientRect.left
-            const scrollbarScale = px / (document.getElementById('content').clientWidth - window.innerHeight);
+            const scroll = document.getElementById("scroll");
+            const scrollbarScale = scroll.scrollLeft / (scroll.scrollWidth - window.innerWidth);
             document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
-        },
+        }
     }
 }
 </script>

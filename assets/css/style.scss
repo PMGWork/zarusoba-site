@@ -227,7 +227,7 @@ header {
             margin-left: 40px;
             display: inline-block;
             @include sm {
-                margin-left: 20px;
+                margin-left: 15px;
             }
             a {
                 transition: all .3s;
@@ -852,8 +852,10 @@ footer {
     }
 }
 
+#overflow {
+    overflow-x: hidden;
+}
 .edz2 {
-    padding: 0 $width1;
     height: 100vh;
     position: relative;
     .viewport {
@@ -862,8 +864,11 @@ footer {
     }
     .edz-wrapper {
         position: absolute;
-        bottom: 18vh;
         display: flex;
+        width: 100vw;
+        padding-left: 5vw;
+        top: 50%;
+        transform: translateY(-50%);
         .edz-title {
             display: flex;
             justify-content: flex-end;
@@ -890,6 +895,9 @@ footer {
                         h1 {
                             animation: TitleAnim2 .8s cubic-bezier(0,.7,.3,1) both;
                         }
+                        @include md {
+                            line-height: 1.4;
+                        }
                         @for $i from 1 through 5 {
                             &:nth-child(#{$i}) h1 {
                                 animation-delay: 0.25s * $i + .5s;
@@ -909,6 +917,9 @@ footer {
                     margin-top: 90px;
                     line-height: 2;
                     color: $color-gray;
+                    @include sm {
+                        margin-top: 30px;
+                    }
                     .block {
                         p {
                             display: inline-block;
@@ -987,6 +998,12 @@ footer {
         }
         .article-all {
             margin: 120px 0 0 $width1;
+            @include md {
+                margin: 100px 0 0 $width1;
+            }
+            @include sm {
+                margin: 80px 0 0 $width1;
+            }
             .btn:hover {
                 transform: translateX(-10px) scale(1.1);
                 .arrow {
@@ -1002,11 +1019,15 @@ footer {
     #scrollbar-hrz,#scrollbar-hrz1 {
         position: fixed;
         bottom: 8%;
-        margin: 0 80px;
         height: 2px;
+        margin-left: 150px;
         width: calc(100vw - 300px);
         transform-origin: 0% 50%;
         background: #E0E0E0;
+        @include md {
+            margin-left: 10vw;
+            width: 80vw;
+        }
     }
     #scrollbar-hrz {
         background: #181818;
