@@ -14,56 +14,58 @@
 <div id="scroll3" class="scroll-target"></div>
 <div id="top" class="edz2">
     <div id="luxy">
-        <div id="scroll" class="edz-wrapper">
-            <div class="edz-title">
-                <div class="number-block">
-                    <h4 class="number">02</h4>
-                </div>
-                <div class="title-block">
-                    <div class="title">
-                        <div class="block">
-                            <h1>Everyday</h1>
+        <div id="scroll">
+            <div class="edz-wrapper">
+                <div class="edz-title">
+                    <div class="number-block">
+                        <h4 class="number">02</h4>
+                    </div>
+                    <div class="title-block">
+                        <div class="title">
+                            <div class="block">
+                                <h1>Everyday</h1>
+                            </div>
+                            <div class="block">
+                                <h1>Zarusoba</h1>
+                            </div>
                         </div>
-                        <div class="block">
-                            <h1>Zarusoba</h1>
+                        <ul class="font">
+                            <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll1'" to><p>- 20</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll2'" to><p>- 40</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll3'" to><p>- 60</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll4'" to><p>- 80</p></nuxt-link></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id" :id="index + 1">
+                    <div class="article-img">
+                        <h3 class="number">{{index + 1}}</h3>
+                        <div class="img-block">
+                            <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
+                                <img
+                                    :src="edz.image.url"
+                                    :width="edz.image.width"
+                                    :height="edz.image.height"
+                                    :alt="edz.title"
+                                    loading="lazy"
+                                    oncontextmenu="return false;"
+                                    onselectstart="return false;"
+                                    onmousedown="return false;"
+                                >
+                            </a>
                         </div>
                     </div>
-                    <ul class="font">
-                        <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll1'" to><p>- 20</p></nuxt-link></li>
-                        <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll2'" to><p>- 40</p></nuxt-link></li>
-                        <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll3'" to><p>- 60</p></nuxt-link></li>
-                        <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll4'" to><p>- 80</p></nuxt-link></li>
-                    </ul>
+                    <h4 class="article-title">{{ edz.title }}</h4>
+                    <p class="article-subtitle font">{{ edz.created }}</p>
                 </div>
-            </div>
-            <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id" :id="index + 1">
-                <div class="article-img">
-                    <h3 class="number">{{index + 1}}</h3>
-                    <div class="img-block">
-                        <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
-                            <img
-                                :src="edz.image.url"
-                                :width="edz.image.width"
-                                :height="edz.image.height"
-                                :alt="edz.title"
-                                loading="lazy"
-                                oncontextmenu="return false;"
-                                onselectstart="return false;"
-                                onmousedown="return false;"
-                            >
-                        </a>
-                    </div>
+                <div class="article-all">
+                    <nuxt-link class="all" v-scroll-to="'#top'" to>
+                        <div class="btn">
+                            <h3 class="arrow">←</h3>
+                        </div>
+                    </nuxt-link>
+                    <h5 class="all-item">Top</h5>
                 </div>
-                <h4 class="article-title">{{ edz.title }}</h4>
-                <p class="article-subtitle font">{{ edz.created }}</p>
-            </div>
-            <div class="article-all">
-                <nuxt-link class="all" v-scroll-to="'#top'" to>
-                    <div class="btn">
-                        <h3 class="arrow">←</h3>
-                    </div>
-                </nuxt-link>
-                <h5 class="all-item">Top</h5>
             </div>
         </div>
     </div>
@@ -133,7 +135,7 @@ export default {
             //Scrollbar
             window.addEventListener('scroll', this.scrollbar)
         } else {
-            document.querySelector(".edz-wrapper").style.overflowX = 'scroll';
+            document.getElementById("scroll").style.overflowX = 'scroll';
 
             //Scrollbar
             document.getElementById("scroll").addEventListener('scroll', this.scrollbar2)
