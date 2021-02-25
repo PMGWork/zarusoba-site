@@ -323,15 +323,12 @@ export default {
             }
         })(window.navigator.userAgent.toLowerCase());
 
-        const windowWidth = window.innerWidth
-        if (windowWidth > 960) {
-            if(!_ua.Mobile&&!_ua.Tablet){
-                luxy.init()
-            } else {
-                luxy.init({
-                    wrapperSpeed: 0.5,
-                })
-            }
+        if(!_ua.Mobile&&!_ua.Tablet){
+            luxy.init()
+        } else {
+            luxy.init({
+                wrapperSpeed: 0.5
+            })
         }
 
         //ScrollBooster
