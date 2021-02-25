@@ -324,11 +324,11 @@ export default {
         })(window.navigator.userAgent.toLowerCase());
 
         if(!_ua.Mobile&&!_ua.Tablet){
-            luxy.init()
+            luxy.init();
         } else {
             luxy.init({
-                wrapperSpeed: 0.5
-            })
+                wrapperSpeed: 0.5,
+            });
         }
 
         //ScrollBooster

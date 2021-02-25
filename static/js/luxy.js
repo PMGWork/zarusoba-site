@@ -83,9 +83,9 @@
 			this.wapperOffset = 0;
 			this.active = false;
 		};
-		Luxy.prototype = {git
+		Luxy.prototype = {
 			isAnimate: false,
-			isResize : false,
+			isResize: false,
 			scrollId: "",
 			resizeId: "",
 			init : function(options){
@@ -235,8 +235,7 @@
 					this.scrollId = "";
 					this.resizeId = "";
 				}
-
-			},
+			}
 		};
 
 
