@@ -246,7 +246,8 @@ header {
         margin: 0 auto 200px;
     }
     @include sm {
-        margin: 30px auto 150px;
+        margin: 0 auto 150px;
+        padding-top: 160px;
     }
     .main-block {
         position: absolute;
