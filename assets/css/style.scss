@@ -152,6 +152,19 @@ li {
     transform-origin: bottom;
 }
 
+#loading-first {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    background: $color-white;
+    z-index: 999999999999999999;
+    opacity: 1;
+    &.load {
+        opacity: 0;
+    }
+}
+
 .scroll-target {
     position: absolute;
 }
@@ -408,6 +421,7 @@ header {
             display: flex;
             img {
                 width: 640px;
+                height: auto;
                 vertical-align: top;
                 @include md {
                     width: 90vw;
@@ -550,7 +564,10 @@ header {
                     transform: translate(32vw, 12vw) rotateZ(20deg);
                     z-index: 1;
                     --posY: calc(12vw + 120px);
+                    width: 20vw;
+                    height: auto;
                     @include md {
+                        width: 35vw;
                         transform: translate(50vw, var(--posY)) rotateZ(20deg);
                     }
                 }
@@ -558,7 +575,10 @@ header {
                     transform: translate(12vw, 24vw) rotateZ(-5deg);
                     z-index: 2;
                     --posY: calc(16vw + 320px);
+                    width: 20vw;
+                    height: auto;
                     @include md {
+                        width: 35vw;
                         transform: translate(20vw, var(--posY)) rotateZ(-5deg);
                     }
                 }

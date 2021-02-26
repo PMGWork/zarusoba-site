@@ -51,16 +51,19 @@
                         <h3 class="number">{{index + 1}}</h3>
                         <div class="img-block">
                             <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
-                                <img
-                                    :src="edz.image.url"
-                                    :width="edz.image.width"
-                                    :height="edz.image.height"
-                                    :alt="edz.title"
-                                    loading="lazy"
-                                    oncontextmenu="return false;"
-                                    onselectstart="return false;"
-                                    onmousedown="return false;"
-                                >
+                                <picture>
+                                    <source :srcset="edz.image.webp" type="image/webp"/>
+                                    <img
+                                        :src="edz.image.url"
+                                        :width="edz.image.width"
+                                        :height="edz.image.height"
+                                        :alt="edz.title"
+                                        loading="lazy"
+                                        oncontextmenu="return false;"
+                                        onselectstart="return false;"
+                                        onmousedown="return false;"
+                                    >
+                                </picture>
                             </a>
                         </div>
                     </div>
@@ -100,6 +103,11 @@ export default {
                     edzs(orderBy: date_DESC) {
                         title
                         image {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
                             url
                             height
                             width

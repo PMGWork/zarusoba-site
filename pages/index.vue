@@ -1,11 +1,12 @@
 <template>
 <div>
+
 <div id="loading1" class="loading"></div>
 <div id="loading2" class="loading"></div>
 <div id="loading3" class="loading"></div>
 
 <header class="header">
-    <nuxt-link v-scroll-to="'#top'" to><img class="header-logo" src="~/assets/img/ZDW_logo.svg"></nuxt-link>
+    <nuxt-link v-scroll-to="'#top'" to><img class="header-logo" src="~/assets/img/ZDW_logo.svg" alt="logo"></nuxt-link>
     <ul>
         <li><nuxt-link v-scroll-to="'#about'" to>About</nuxt-link></li>
         <li><nuxt-link v-scroll-to="'#projects'" to>Projects</nuxt-link></li>
@@ -48,10 +49,22 @@
         </div>
         <div class="about-img">
             <div class="luxy-el img-wrapper" data-horizontal="1" data-speed-x="-4">
-                <img src="~/assets/img/moving_sakurai.png">
-                <img src="~/assets/img/moving_pixel.png">
-                <img src="~/assets/img/moving_cube.png">
-                <img src="~/assets/img/moving_sugar.png">
+                <picture>
+                    <source srcset="~/assets/img/moving_sakurai.webp" type="image/webp"/>
+                    <img src="~/assets/img/moving_sakurai.png" width="640" height="480" alt="moving"/>
+                </picture>
+                <picture>
+                    <source srcset="~/assets/img/moving_pixel.webp" type="image/webp"/>
+                    <img src="~/assets/img/moving_pixel.png" width="640" height="480" alt="moving"/>
+                </picture>
+                <picture>
+                    <source srcset="~/assets/img/moving_cube.webp" type="image/webp"/>
+                    <img src="~/assets/img/moving_cube.png" width="640" height="480" alt="moving"/>
+                </picture>
+                <picture>
+                    <source srcset="~/assets/img/moving_sugar.webp" type="image/webp"/>
+                    <img src="~/assets/img/moving_sugar.png" width="640" height="480" alt="moving"/>
+                </picture>
             </div>
             <p class="luxy-el parallax-txt" data-horizontal="1" data-speed-x="-8">WHAT IS WHAT IS</p>
         </div>
@@ -91,42 +104,49 @@
         <div class="projects-content" v-for="(project, index) in projects" :key="project.id">
             <div class="content-img">
                 <div class="img-block luxy-el" data-speed-y="2" data-offset="-200">
-                    <img
-                        :src="project.image1.url"
-                        :width="project.image1.width"
-                        :height="project.image1.height"
-                        alt="image"
-                        loading="lazy"
-                        oncontextmenu="return false;"
-                        onselectstart="return false;"
-                        onmousedown="return false;"
-                    >
+                    <picture>
+                        <source :srcset="project.image1.webp" type="image/webp"/>
+                        <img
+                            :src="project.image1.url"
+                            :width="project.image1.width"
+                            :height="project.image1.height"
+                            alt="image"
+                            loading="lazy"
+                            oncontextmenu="return false;"
+                            onselectstart="return false;"
+                            onmousedown="return false;"
+                        >
+                    </picture>
                 </div>
                 <div class="img-block luxy-el" data-speed-y="4" data-offset="-350">
-                    <img
-                        class="square"
-                        :src="project.image2.url"
-                        :width="project.image2.width"
-                        :height="project.image2.height"
-                        alt="image"
-                        loading="lazy"
-                        oncontextmenu="return false;"
-                        onselectstart="return false;"
-                        onmousedown="return false;"
-                    >
+                    <picture>
+                        <source :srcset="project.image2.webp" type="image/webp"/>
+                        <img
+                            :src="project.image2.url"
+                            :width="project.image2.width"
+                            :height="project.image2.height"
+                            :alt="project.title"
+                            loading="lazy"
+                            oncontextmenu="return false;"
+                            onselectstart="return false;"
+                            onmousedown="return false;"
+                        >
+                    </picture>
                 </div>
                 <div class="img-block luxy-el" data-speed-y="6" data-offset="-600">
-                    <img
-                        class="square"
-                        :src="project.image3.url"
-                        :width="project.image3.width"
-                        :height="project.image3.height"
-                        alt="image"
-                        loading="lazy"
-                        oncontextmenu="return false;"
-                        onselectstart="return false;"
-                        onmousedown="return false;"
-                    >
+                    <picture>
+                        <source :srcset="project.image3.webp" type="image/webp"/>
+                        <img
+                            :src="project.image3.url"
+                            :width="project.image3.width"
+                            :height="project.image3.height"
+                            :alt="project.title"
+                            loading="lazy"
+                            oncontextmenu="return false;"
+                            onselectstart="return false;"
+                            onmousedown="return false;"
+                        >
+                    </picture>
                 </div>
             </div>
             <div class="content-item">
@@ -147,16 +167,19 @@
                     <div class="article-img">
                         <h3 class="number">{{index + 1}}</h3>
                         <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
-                            <img
-                                :src="edz.image.url"
-                                :width="edz.image.width"
-                                :height="edz.image.height"
-                                alt="video"
-                                loading="lazy"
-                                oncontextmenu="return false;"
-                                onselectstart="return false;"
-                                onmousedown="return false;"
-                            >
+                            <picture>
+                                <source :srcset="edz.image.webp" type="image/webp"/>
+                                <img
+                                    :src="edz.image.url"
+                                    :width="edz.image.width"
+                                    :height="edz.image.height"
+                                    :alt="edz.title"
+                                    loading="lazy"
+                                    oncontextmenu="return false;"
+                                    onselectstart="return false;"
+                                    onmousedown="return false;"
+                                >
+                            </picture>
                         </a>
                     </div>
                     <h4 class="article-title">{{ edz.title }}</h4>
@@ -181,7 +204,10 @@
         <div class="members-wrapper">
             <div class="members-content">
                 <a href="https://twitter.com/sl_dndn" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <img class="content-logo" src="~/assets/img/seldo.jpg"/>
+                    <picture>
+                        <source srcset="~/assets/img/seldo.webp" type="image/webp"/>
+                        <img class="content-logo" src="~/assets/img/seldo.jpg" height="200" width="200" alt="icon"/>
+                    </picture>
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">SELDO</h3>
@@ -190,7 +216,10 @@
             </div>
             <div class="members-content">
                 <a href="https://twitter.com/sakurai_tacker" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <img class="content-logo" src="~/assets/img/sakurai.jpg"/>
+                    <picture>
+                        <source srcset="~/assets/img/sakurai.webp" type="image/webp"/>
+                        <img class="content-logo" src="~/assets/img/sakurai.jpg" height="200" width="200" alt="icon"/>
+                    </picture>
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">桜井貴志</h3>
@@ -199,7 +228,10 @@
             </div>
             <div class="members-content">
                 <a href="https://twitter.com/pmgwork" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <img class="content-logo" src="~/assets/img/pixel.jpg"/>
+                    <picture>
+                        <source srcset="~/assets/img/pixel.webp" type="image/webp"/>
+                        <img class="content-logo" src="~/assets/img/pixel.jpg" height="200" width="200" alt="icon"/>
+                    </picture>
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">ぴくせる</h3>
@@ -208,7 +240,10 @@
             </div>
             <div class="members-content">
                 <a href="https://twitter.com/cubezeero" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <img class="content-logo" src="~/assets/img/cube.jpg"/>
+                    <picture>
+                        <source srcset="~/assets/img/cube.webp" type="image/webp"/>
+                        <img class="content-logo" src="~/assets/img/cube.jpg" height="200" width="200" alt="icon"/>
+                    </picture>
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">Cube</h3>
@@ -217,7 +252,10 @@
             </div>
             <div class="members-content">
                 <a href="https://twitter.com/sugar_mgx" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
-                    <img class="content-logo" src="~/assets/img/sugar.jpg"/>
+                    <picture>
+                        <source srcset="~/assets/img/sugar.webp" type="image/webp"/>
+                        <img class="content-logo" src="~/assets/img/sugar.jpg" height="200" width="200" alt="icon"/>
+                    </picture>
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">Sugar</h3>
@@ -265,6 +303,11 @@ export default {
                     edzs( orderBy: date_DESC, first: 5 ) {
                         title
                         image {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
                             url
                             height
                             width
@@ -281,16 +324,31 @@ export default {
                     projects( orderBy: date_DESC ) {
                         title
                         image1 {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
                             url
                             height
                             width
                         }
                         image2 {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
                             url
                             height
                             width
                         }
                         image3 {
+                            webp: url(
+                                transformation: {
+                                    document: { output: { format: webp } }
+                                }
+                            )
                             url
                             height
                             width
@@ -304,7 +362,9 @@ export default {
     },
     head() {
         return {
-            name: 'description', content: 'Zarusoba DesignWorksは、5人のクリエイターによるデザイナーグループです。',
+            meta: [
+                { name: "description", content: "Zarusoba DesignWorksは、5人のクリエイターによるデザイナーグループです。" },
+            ]
         }
     },
     mounted(){
@@ -333,7 +393,7 @@ export default {
             luxy.init();
         } else {
             luxy.init({
-                wrapperSpeed: 0.5
+                wrapperSpeed: 1
             });
         }
 
