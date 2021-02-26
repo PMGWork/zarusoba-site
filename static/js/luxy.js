@@ -101,7 +101,7 @@
 					document.body.style.height = document.body.clientHeight + 'px';
 					this.windowHeight = document.body.clientHeight;
 				} else {
-					document.body.style.height = document.body.scrollWidth + 'px';
+					document.body.style.height = document.body.scrollWidth - document.body.clientWidth + 1000 + 'px';
 					this.windowWidth = document.body.scrollWidth;
 				}
 
@@ -190,7 +190,7 @@
 				} else {
 					self.windowWidth = (window.innerWidth || document.documentElement.clientWidth || 0);
 					if( parseInt(self.wrapper.scrollWidth) != parseInt(document.body.style.width)){
-						document.body.style.height = self.wrapper.scrollWidth + 'px';
+						document.body.style.height = self.wrapper.scrollWidth - document.body.clientWidth + 1000 + 'px';
 					}
 				}
 

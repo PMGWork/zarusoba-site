@@ -213,9 +213,9 @@ header {
         @include md {
             height: 50px;
         }
-    }
-    .header-logo:hover {
-        opacity: .5;
+        &:hover {
+            opacity: .5;
+        }
     }
     ul {
         font-family: "inter", "Noto Sans JP", sans-serif;
@@ -231,9 +231,9 @@ header {
             }
             a {
                 transition: all .3s;
-            }
-            a:hover {
-                opacity: .5;
+                &:hover {
+                    opacity: .5;
+                }
             }
         }
     }
@@ -246,7 +246,7 @@ header {
         margin: 0 auto 200px;
     }
     @include sm {
-        margin: 0 auto 150px;
+        margin: 30px auto 150px;
     }
     .main-block {
         position: absolute;
@@ -325,10 +325,10 @@ header {
 
         @keyframes TitleAnim {
             from {
-                transform: translateY(250px);
+                transform: translateY(300px) rotateZ(8deg);
             }
             to {
-                transform: translateY(0px);
+                transform: translateY(0px) rotateX(0deg);
             }
         }
 
@@ -474,6 +474,7 @@ header {
                 top: 50%;
                 transform: translateX(-50%) translateY(-50%);
             }
+
         }
         .content-txt {
             line-height: 2.5;
@@ -643,6 +644,12 @@ header {
     @include sm {
         margin: 150px auto;
     }
+    .viewport {
+        cursor: grab;
+        &:active {
+            cursor: grabbing;
+        }
+    }
     .edz-title {
         display: flex;
         justify-content: flex-end;
@@ -682,9 +689,9 @@ header {
                     @include sm {
                         height: 180px;
                     }
-                }
-                img:hover {
-                    transform: scale(1.15);
+                    &:hover {
+                        transform: scale(1.15);
+                    }
                 }
             }
             .article-title {
@@ -749,9 +756,13 @@ header {
                 width: auto;
                 border-radius: 100%;
                 margin-left: 30px;
+                transition: opacity .3s;
                 @include md {
                     height: 60px;
                     margin-left: 0;
+                }
+                &:hover {
+                    opacity: .5;
                 }
             }
             .title-block {
@@ -907,10 +918,10 @@ footer {
                     }
                     @keyframes TitleAnim2 {
                         from {
-                            transform: translateY(160px);
+                            transform: translateY(200px) rotateZ(8deg);
                         }
                         to {
-                            transform: translateY(0px);
+                            transform: translateY(0px) rotateZ(0deg);
                         }
                     }
                 }
@@ -926,9 +937,9 @@ footer {
                             display: inline-block;
                             transition: all .3s;
                             animation: TitleAnim2 .8s cubic-bezier(0,.7,.3,1) both;
-                        }
-                        p:hover {
-                            color: $color-black;
+                            &:hover {
+                                color: $color-black;
+                            }
                         }
                         @for $i from 1 through 10 {
                             &:nth-child(#{$i}) p {
@@ -985,9 +996,9 @@ footer {
                     @include sm {
                         height: 240px;
                     }
-                }
-                img:hover {
-                    transform: scale(1.15);
+                    &:hover {
+                        transform: scale(1.15);
+                    }
                 }
             }
             .article-title {

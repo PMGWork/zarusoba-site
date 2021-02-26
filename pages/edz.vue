@@ -6,7 +6,10 @@
 <header class="header">
     <nuxt-link to="/"><img class="header-logo" src="~/assets/img/ZDW_logo.svg"></nuxt-link>
     <ul>
-        <li><nuxt-link v-scroll-to="'#top'" to>Top</nuxt-link></li>
+        <li>
+            <nuxt-link v-if="$device.isDesktop" v-scroll-to="'#top'" to>Top</nuxt-link>
+            <nuxt-link v-else v-scroll-to="{ el: '#top', container: '#scroll' }" to>Top</nuxt-link>
+        </li>
     </ul>
 </header>
 <div id="scroll1" class="scroll-target"></div>
@@ -29,11 +32,17 @@
                                 <h1>Zarusoba</h1>
                             </div>
                         </div>
-                        <ul class="font">
+                        <ul v-if="$device.isDesktop" class="font">
                             <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll1'" to><p>- 20</p></nuxt-link></li>
                             <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll2'" to><p>- 40</p></nuxt-link></li>
                             <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll3'" to><p>- 60</p></nuxt-link></li>
                             <li class="block"><nuxt-link class="all" v-scroll-to="'#scroll4'" to><p>- 80</p></nuxt-link></li>
+                        </ul>
+                        <ul v-else class="font">
+                            <li class="block"><nuxt-link class="all" v-scroll-to="{ el: '#scroll1', container: '#scroll' }" to><p>- 20</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="{ el: '#scroll2', container: '#scroll' }" to><p>- 40</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="{ el: '#scroll3', container: '#scroll' }" to><p>- 60</p></nuxt-link></li>
+                            <li class="block"><nuxt-link class="all" v-scroll-to="{ el: '#scroll4', container: '#scroll' }" to><p>- 80</p></nuxt-link></li>
                         </ul>
                     </div>
                 </div>
@@ -59,7 +68,12 @@
                     <p class="article-subtitle font">{{ edz.created }}</p>
                 </div>
                 <div class="article-all">
-                    <nuxt-link class="all" v-scroll-to="'#top'" to>
+                    <nuxt-link v-if="$device.isDesktop" class="all" v-scroll-to="'#top'" to>
+                        <div class="btn">
+                            <h3 class="arrow">←</h3>
+                        </div>
+                    </nuxt-link>
+                    <nuxt-link v-else class="all" v-scroll-to="{ el: '#top', container: '#scroll' }" to>
                         <div class="btn">
                             <h3 class="arrow">←</h3>
                         </div>
@@ -109,6 +123,12 @@ export default {
         //Luxy
         luxy.cancel();
 
+        //Scroll
+        const
+        scroll1 = document.getElementById('20'),
+        scroll2 = document.getElementById('40'),
+        scroll3 = document.getElementById('60');
+
         var _ua = (function(u){
             return {
                 Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1 && u.indexOf("tablet pc") == -1)
@@ -132,33 +152,36 @@ export default {
                 scrollY: false
             })
 
-            //Scrollbar
+            if(scroll1){
+                const clientRect1 = scroll1.getBoundingClientRect();
+                document.getElementById('scroll1').style.top = clientRect1.left + 'px';
+            }
+            if(scroll2){
+                const clientRect2 = scroll2.getBoundingClientRect();
+                document.getElementById('scroll2').style.top = clientRect2.left + 'px';
+            }
+            if(scroll3){
+                const clientRect3 = scroll3.getBoundingClientRect();
+                document.getElementById('scroll3').style.top = clientRect3.Left + 'px';
+            }
+
             window.addEventListener('scroll', this.scrollbar)
         } else {
+            if(scroll1){
+                const clientRect1 = scroll1.getBoundingClientRect();
+                document.getElementById('scroll1').style.left = clientRect1.left + 'px';
+            }
+            if(scroll2){
+                const clientRect2 = scroll2.getBoundingClientRect();
+                document.getElementById('scroll2').style.left = clientRect2.left + 'px';
+            }
+            if(scroll3){
+                const clientRect3 = scroll3.getBoundingClientRect();
+                document.getElementById('scroll3').style.left = clientRect3.Left + 'px';
+            }
+
             document.getElementById("scroll").style.overflowX = 'scroll';
-
-            //Scrollbar
             document.getElementById("scroll").addEventListener('scroll', this.scrollbar2)
-        }
-
-        //Scroll
-        const scroll1 = document.getElementById('20')
-        const scroll2 = document.getElementById('40')
-        const scroll3 = document.getElementById('60')
-        if(scroll1){
-            const clientRect1 = scroll1.getBoundingClientRect();
-            const px1 = window.scrollX + clientRect1.left;
-            document.getElementById('scroll1').style.top = px1 + 'px';
-        }
-        if(scroll2){
-            const clientRect2 = scroll2.getBoundingClientRect();
-            const px2 = window.scrollX + clientRect2.left;
-            document.getElementById('scroll2').style.top = px2 + 'px';
-        }
-        if(scroll3){
-            const clientRect3 = scroll3.getBoundingClientRect();
-            const px3 = window.scrollX + clientRect3.left;
-            document.getElementById('scroll3').style.top = px3 + 'px';
         }
     },
     methods: {

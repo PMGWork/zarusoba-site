@@ -3,6 +3,7 @@
 <div id="loading1" class="loading"></div>
 <div id="loading2" class="loading"></div>
 <div id="loading3" class="loading"></div>
+
 <header class="header">
     <nuxt-link v-scroll-to="'#top'" to><img class="header-logo" src="~/assets/img/ZDW_logo.svg"></nuxt-link>
     <ul>
@@ -179,35 +180,45 @@
         </div>
         <div class="members-wrapper">
             <div class="members-content">
-                <img class="content-logo" src="~/assets/img/seldo.jpg"/>
+                <a href="https://twitter.com/sl_dndn" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
+                    <img class="content-logo" src="~/assets/img/seldo.jpg"/>
+                </a>
                 <div class="title-block">
                     <h3 class="content-title">SELDO</h3>
                     <p class="content-subtitle font">Leader - Design / Motion Graphis / 3DCG</p>
                 </div>
             </div>
             <div class="members-content">
-                <img class="content-logo" src="~/assets/img/sakurai.jpg"/>
+                <a href="https://twitter.com/sakurai_tacker" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
+                    <img class="content-logo" src="~/assets/img/sakurai.jpg"/>
+                </a>
                 <div class="title-block">
                     <h3 class="content-title">桜井貴志</h3>
                     <p class="content-subtitle font">Member - Motion Graphis / 3DCG</p>
                 </div>
             </div>
             <div class="members-content">
-                <img class="content-logo" src="~/assets/img/pixel.jpg"/>
+                <a href="https://twitter.com/pmgwork" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
+                    <img class="content-logo" src="~/assets/img/pixel.jpg"/>
+                </a>
                 <div class="title-block">
                     <h3 class="content-title">ぴくせる</h3>
                     <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Web Design</p>
                 </div>
             </div>
             <div class="members-content">
-                <img class="content-logo" src="~/assets/img/cube.jpg"/>
+                <a href="https://twitter.com/cubezeero" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
+                    <img class="content-logo" src="~/assets/img/cube.jpg"/>
+                </a>
                 <div class="title-block">
                     <h3 class="content-title">Cube</h3>
                     <p class="content-subtitle font">Member - Motion Graphics / 3DCG / Programming</p>
                 </div>
             </div>
             <div class="members-content">
-                <img class="content-logo" src="~/assets/img/sugar.jpg"/>
+                <a href="https://twitter.com/sugar_mgx" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
+                    <img class="content-logo" src="~/assets/img/sugar.jpg"/>
+                </a>
                 <div class="title-block">
                     <h3 class="content-title">Sugar</h3>
                     <p class="content-subtitle font">Member - Motion Graphics / 3DCG</p>
@@ -291,11 +302,6 @@ export default {
 
         return { edzs,projects };
     },
-    data() {
-        return {
-            number: 1
-        };
-    },
     head() {
         return {
             name: 'description', content: 'Zarusoba DesignWorksは、5人のクリエイターによるデザイナーグループです。',
@@ -327,7 +333,7 @@ export default {
             luxy.init();
         } else {
             luxy.init({
-                wrapperSpeed: 0.5,
+                wrapperSpeed: 0.5
             });
         }
 
