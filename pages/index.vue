@@ -103,7 +103,7 @@
         </div>
         <div class="projects-content" v-for="(project, index) in projects" :key="project.id">
             <div class="content-img">
-                <div class="img-block luxy-el" data-speed-y="2" data-offset="-200">
+                <div class="img-block">
                     <picture>
                         <source :srcset="project.image1.webp" type="image/webp"/>
                         <img
@@ -118,7 +118,7 @@
                         >
                     </picture>
                 </div>
-                <div class="img-block luxy-el" data-speed-y="4" data-offset="-350">
+                <div class="img-block">
                     <picture>
                         <source :srcset="project.image2.webp" type="image/webp"/>
                         <img
@@ -133,7 +133,7 @@
                         >
                     </picture>
                 </div>
-                <div class="img-block luxy-el" data-speed-y="6" data-offset="-600">
+                <div class="img-block">
                     <picture>
                         <source :srcset="project.image3.webp" type="image/webp"/>
                         <img
@@ -165,7 +165,7 @@
             <div class="edz-wrapper content">
                 <div class="edz-article" v-for="(edz, index) in edzs" :key="edz.id">
                     <div class="article-img">
-                        <h3 class="number">{{index + 1}}</h3>
+                        <h3 class="number">{{ index + 1 }}</h3>
                         <a :href="edz.link" target="_blank" :aria-label="edz.title" rel="noopener noreferrer">
                             <picture>
                                 <source :srcset="edz.image.webp" type="image/webp"/>

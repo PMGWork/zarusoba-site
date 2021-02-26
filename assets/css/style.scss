@@ -533,7 +533,7 @@ header {
     .projects-content {
         padding: 250px 0 80px;
         @include sm {
-            padding: 200px 0 0;
+            padding: 150px 0 0;
         }
         &:nth-child(2n) {
             .content-item {
@@ -543,37 +543,32 @@ header {
                 @include md {
                     padding-bottom: 100%;
                 }
-                @include sm {
-                    padding-bottom: 70%;
-                }
                 :nth-child(1) img {
                     width: 45vw;
                     height: auto;
                     transform: translate(3vw, 2vw) rotateZ(-15deg);
                     @include md {
-                        width: 80vw;
+                        width: 75vw;
                     }
                 }
                 :nth-child(2) img {
                     transform: translate(32vw, 12vw) rotateZ(20deg);
                     z-index: 1;
-                    --posY: calc(12vw + 120px);
                     width: 20vw;
                     height: auto;
                     @include md {
                         width: 35vw;
-                        transform: translate(50vw, var(--posY)) rotateZ(20deg);
+                        transform: translate(50vw, 20vw) rotateZ(20deg);
                     }
                 }
                 :nth-child(3) img {
-                    transform: translate(12vw, 24vw) rotateZ(-5deg);
+                    transform: translate(14vw, 22vw) rotateZ(-5deg);
                     z-index: 2;
-                    --posY: calc(16vw + 320px);
                     width: 20vw;
                     height: auto;
                     @include md {
                         width: 35vw;
-                        transform: translate(20vw, var(--posY)) rotateZ(-5deg);
+                        transform: translate(20vw, 36vw) rotateZ(-5deg);
                     }
                 }
             }
@@ -584,40 +579,42 @@ header {
             }
             .content-img {
                 float: right;
+                @include md {
+                    padding-bottom: 100%;
+                    float: none;
+                }
                 :nth-child(1) img {
                     width: 45vw;
                     height: auto;
-                    transform: translate(3vw, 2vw) rotateZ(-15deg);
+                    transform: translate(5vw, 2vw) rotateZ(10deg);
                     @include md {
-                        width: 80vw;
+                        width: 75vw;
                     }
                 }
                 :nth-child(2) img {
-                    transform: translate(32vw, 12vw) rotateZ(20deg);
+                    transform: translate(28vw, 16vw) rotateZ(-15deg);
                     z-index: 1;
-                    --posY: calc(12vw + 120px);
                     width: 20vw;
                     height: auto;
                     @include md {
                         width: 35vw;
-                        transform: translate(50vw, var(--posY)) rotateZ(20deg);
+                        transform: translate(48vw, 30vw) rotateZ(-15deg);
                     }
                 }
                 :nth-child(3) img {
-                    transform: translate(12vw, 24vw) rotateZ(-5deg);
+                    transform: translate(10vw, 22vw) rotateZ(5deg);
                     z-index: 2;
-                    --posY: calc(16vw + 320px);
                     width: 20vw;
                     height: auto;
                     @include md {
                         width: 35vw;
-                        transform: translate(20vw, var(--posY)) rotateZ(-5deg);
+                        transform: translate(16vw, 38vw) rotateZ(5deg);
                     }
                 }
             }
         }
         .content-img {
-            width: 750px;
+            width: 55vw;
             .img-block {
                 img {
                     position: absolute;
