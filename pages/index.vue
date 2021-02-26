@@ -51,19 +51,19 @@
             <div class="luxy-el img-wrapper" data-horizontal="1" data-speed-x="-4">
                 <picture>
                     <source srcset="~/assets/img/moving_sakurai.webp" type="image/webp"/>
-                    <img src="~/assets/img/moving_sakurai.png" width="640" height="480" alt="moving"/>
+                    <img src="~/assets/img/moving_sakurai.png" width="640" height="480" alt="moving" loading="lazy"/>
                 </picture>
                 <picture>
                     <source srcset="~/assets/img/moving_pixel.webp" type="image/webp"/>
-                    <img src="~/assets/img/moving_pixel.png" width="640" height="480" alt="moving"/>
+                    <img src="~/assets/img/moving_pixel.png" width="640" height="480" alt="moving" loading="lazy"/>
                 </picture>
                 <picture>
                     <source srcset="~/assets/img/moving_cube.webp" type="image/webp"/>
-                    <img src="~/assets/img/moving_cube.png" width="640" height="480" alt="moving"/>
+                    <img src="~/assets/img/moving_cube.png" width="640" height="480" alt="moving" loading="lazy"/>
                 </picture>
                 <picture>
                     <source srcset="~/assets/img/moving_sugar.webp" type="image/webp"/>
-                    <img src="~/assets/img/moving_sugar.png" width="640" height="480" alt="moving"/>
+                    <img src="~/assets/img/moving_sugar.png" width="640" height="480" alt="moving" loading="lazy"/>
                 </picture>
             </div>
             <p class="luxy-el parallax-txt" data-horizontal="1" data-speed-x="-8">WHAT IS WHAT IS</p>
@@ -206,7 +206,7 @@
                 <a href="https://twitter.com/sl_dndn" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
                     <picture>
                         <source srcset="~/assets/img/seldo.webp" type="image/webp"/>
-                        <img class="content-logo" src="~/assets/img/seldo.jpg" height="200" width="200" alt="icon"/>
+                        <img class="content-logo" src="~/assets/img/seldo.jpg" height="200" width="200" alt="icon" loading="lazy"/>
                     </picture>
                 </a>
                 <div class="title-block">
@@ -218,7 +218,7 @@
                 <a href="https://twitter.com/sakurai_tacker" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
                     <picture>
                         <source srcset="~/assets/img/sakurai.webp" type="image/webp"/>
-                        <img class="content-logo" src="~/assets/img/sakurai.jpg" height="200" width="200" alt="icon"/>
+                        <img class="content-logo" src="~/assets/img/sakurai.jpg" height="200" width="200" alt="icon" loading="lazy"/>
                     </picture>
                 </a>
                 <div class="title-block">
@@ -230,7 +230,7 @@
                 <a href="https://twitter.com/pmgwork" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
                     <picture>
                         <source srcset="~/assets/img/pixel.webp" type="image/webp"/>
-                        <img class="content-logo" src="~/assets/img/pixel.jpg" height="200" width="200" alt="icon"/>
+                        <img class="content-logo" src="~/assets/img/pixel.jpg" height="200" width="200" alt="icon" loading="lazy"/>
                     </picture>
                 </a>
                 <div class="title-block">
@@ -242,7 +242,7 @@
                 <a href="https://twitter.com/cubezeero" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
                     <picture>
                         <source srcset="~/assets/img/cube.webp" type="image/webp"/>
-                        <img class="content-logo" src="~/assets/img/cube.jpg" height="200" width="200" alt="icon"/>
+                        <img class="content-logo" src="~/assets/img/cube.jpg" height="200" width="200" alt="icon" loading="lazy"/>
                     </picture>
                 </a>
                 <div class="title-block">
@@ -254,7 +254,7 @@
                 <a href="https://twitter.com/sugar_mgx" target="_blank" aria-label="Twitter" rel="noopener noreferrer">
                     <picture>
                         <source srcset="~/assets/img/sugar.webp" type="image/webp"/>
-                        <img class="content-logo" src="~/assets/img/sugar.jpg" height="200" width="200" alt="icon"/>
+                        <img class="content-logo" src="~/assets/img/sugar.jpg" height="200" width="200" alt="icon" loading="lazy"/>
                     </picture>
                 </a>
                 <div class="title-block">
