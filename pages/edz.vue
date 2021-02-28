@@ -128,7 +128,6 @@ export default {
     head() {
         return {
             title: 'Everyday Zarusoba | Zarusoba DesignWorks',
-            name: 'description', content: 'ぴくせる - Motion Graphics Designer',
         }
     },
     mounted(){
