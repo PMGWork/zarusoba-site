@@ -30,7 +30,7 @@
 		var defaults = {
 			wrapper: '#luxy',
 			targets : '.luxy-el',
-			wrapperSpeed: 0.1,
+			wrapperSpeed: 0.08,
 			targetSpeed: 0.02,
 			targetPercentage: 0.1,
 			scrollY: true,

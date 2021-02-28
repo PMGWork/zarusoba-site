@@ -14,6 +14,7 @@
         <li><nuxt-link to="/edz">+ EDZ</nuxt-link></li>
     </ul>
 </header>
+
 <div id="luxy">
     <div id="top" class="main">
         <div class="main-block">
@@ -74,14 +75,16 @@
         </div>
         <div class="about-content">
             <div class="content-img">
-                <video
-                    src="~/assets/img/video.mp4"
-                    autoplay loop muted playsinline
-                    oncontextmenu="return false;"
-                    onselectstart="return false;"
-                    onmousedown="return false;"
-                >
-                </video>
+                <div class="img-block luxy-el" data-speed-y="5">
+                    <video
+                        src="~/assets/img/video.mp4"
+                        autoplay loop muted playsinline
+                        oncontextmenu="return false;"
+                        onselectstart="return false;"
+                        onmousedown="return false;"
+                    >
+                    </video>
+                </div>
             </div>
             <div class="content-txt">
                 <p class="em">・Zarusoba Design Works</p>

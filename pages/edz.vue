@@ -1,8 +1,10 @@
 <template>
+
 <div id="overflow">
 <div id="loading1" class="loading"></div>
 <div id="loading2" class="loading"></div>
 <div id="loading3" class="loading"></div>
+
 <header class="header">
     <nuxt-link to="/"><img class="header-logo" src="~/assets/img/ZDW_logo.svg"></nuxt-link>
     <ul>
@@ -12,9 +14,11 @@
         </li>
     </ul>
 </header>
+
 <div id="scroll1" class="scroll-target"></div>
 <div id="scroll2" class="scroll-target"></div>
 <div id="scroll3" class="scroll-target"></div>
+
 <div id="top" class="edz2">
     <div id="luxy">
         <div id="scroll">
@@ -173,7 +177,8 @@ export default {
                 document.getElementById('scroll3').style.top = clientRect3.Left + 'px';
             }
 
-            window.addEventListener('scroll', this.scrollbar)
+            this.scrollbar();
+            window.addEventListener('scroll', (this.scrollbar))
         } else {
             if(scroll1){
                 const clientRect1 = scroll1.getBoundingClientRect();
@@ -188,9 +193,14 @@ export default {
                 document.getElementById('scroll3').style.left = clientRect3.Left + 'px';
             }
 
+            this.scrollbar2();
             document.getElementById("scroll").style.overflowX = 'scroll';
-            document.getElementById("scroll").addEventListener('scroll', this.scrollbar2)
+            document.getElementById("scroll").addEventListener('scroll', (this.scrollbar2))
         }
+    },
+    beforeDestroy(){
+        window.removeEventListener('scroll', this.scrollbar);
+        window.removeEventListener('scroll', this.scrollbar2);
     },
     methods: {
         scrollbar() {
@@ -202,6 +212,6 @@ export default {
             const scrollbarScale = scroll.scrollLeft / (scroll.scrollWidth - window.innerWidth);
             document.getElementById("scrollbar-hrz").style.transform = 'scaleX(' + scrollbarScale + ')';
         }
-    }
+    },
 }
 </script>
