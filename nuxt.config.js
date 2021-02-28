@@ -12,6 +12,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { property: 'og:title', content: 'Zarusoba DesignWorks'},
       { property: 'og:image', content: 'https://media.graphcms.com/LpxzrJrRQSO6Bh6RnMFT'},
       { name: 'twitter:card', content: 'summary_large_image'},
       { name: 'twitter:site', content: '@Z_D_W_'}
