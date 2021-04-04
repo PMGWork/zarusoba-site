@@ -25,7 +25,7 @@
             <p class="txt font">お手数をおかけしてしまい、大変申し訳ございません。</p>
             <div class="content-item">
                 <p class="subtitle font">Mail -</p>
-                <a href="mailto:zarusobadesignworks@gmail.com" target="_blank" aria-label="EMail" rel="noopener noreferrer">
+                <a href="https://forms.gle/E8dWvwsH2fWNbamT9" target="_blank" aria-label="form" rel="noopener noreferrer">
                     <h5 class="title">zarusobadesignworks@gmail.com</h5>
                 </a>
             </div>
