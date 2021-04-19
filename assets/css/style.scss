@@ -1107,28 +1107,19 @@ footer {
             line-height: 2.5;
         }
         .content-item {
-            color: $color-blue;
+            color: $color-white;
             margin: 60px 0;
             .title {
                 position: relative;
                 display: inline-block;
-                margin-top: 20px;
-            }
-            .title::after {
-                content: '';
-                position: absolute;
-                bottom: -8px;
-                left: 0;
-                width: 100%;
-                height: 3px;
-                background: $color-blue;
-                transform: scale(0, 1);
-                transform-origin: right top;
-                transition: transform cubic-bezier(.7, 0, .3, 1) .8s;
-            }
-            .title:hover::after {
-                transform-origin: left top;
-                transform: scale(1, 1);
+                background: rgba(0, 80, 255, 1);
+                border: solid 3px $color-blue;
+                padding: 12px 24px;
+                transition: all .3s;
+                &:hover {
+                    color: $color-blue;
+                    background: rgba(0, 80, 255, 0);
+                }
             }
         }
     }

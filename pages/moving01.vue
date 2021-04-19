@@ -24,9 +24,8 @@
             <p class="txt font">対策として、DLカードのシリアルコードを下記のフォームに添付していただき、メール、またはTwitterのDMにて映像、音源データをお渡しする形をとらせていただきます。</p>
             <p class="txt font">お手数をおかけしてしまい、大変申し訳ございません。</p>
             <div class="content-item">
-                <p class="subtitle font">Form -</p>
                 <a href="https://forms.gle/E8dWvwsH2fWNbamT9" target="_blank" aria-label="form" rel="noopener noreferrer">
-                    <h5 class="title">zarusobadesignworks@gmail.com</h5>
+                    <h5 class="title">Form</h5>
                 </a>
             </div>
         </div>

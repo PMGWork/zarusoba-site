@@ -214,7 +214,7 @@
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">SELDO</h3>
-                    <p class="content-subtitle font">Leader - Design / Motion Graphis / 3DCG</p>
+                    <p class="content-subtitle font">Leader - Design / Motion Graphics / 3DCG</p>
                 </div>
             </div>
             <div class="members-content">
@@ -226,7 +226,7 @@
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">桜井貴志</h3>
-                    <p class="content-subtitle font">Member - Motion Graphis / 3DCG</p>
+                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG</p>
                 </div>
             </div>
             <div class="members-content">
