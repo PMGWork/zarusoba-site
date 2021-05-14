@@ -77,6 +77,7 @@ export default {
             return {
                 Tablet:(u.indexOf("windows") != -1 && u.indexOf("touch") != -1 && u.indexOf("tablet pc") == -1)
                     || u.indexOf("ipad") != -1
+                    || u.indexOf('macintosh') > -1 && 'ontouchend' in document
                     || (u.indexOf("android") != -1 && u.indexOf("mobile") == -1)
                     || (u.indexOf("firefox") != -1 && u.indexOf("tablet") != -1)
                     || u.indexOf("kindle") != -1
