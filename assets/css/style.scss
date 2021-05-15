@@ -12,14 +12,33 @@ $media-sm: 560px;
     }
 }
 
-$color-black: #181818;
-$color-blue: #0050FF;
-$color-white: #F8F8F8;
-$color-gray: #C8C8C8;
-$color-gray2: #DCDCDC;
-$color-gray3: #909090;
+:root {
+    --color-black: #181818;
+    --color-blue: #0050FF;
+    --color-white: #F8F8F8;
+    --color-white2: #FFFFFF;
+    --color-gray: #C8C8C8;
+    --color-gray2: #DCDCDC;
+    --color-gray3: #909090;
 
-$width1: 5vw;
+    --color-black-f: #181818;
+    --color-white-f: #F8F8F8;
+
+    --width1: 5vw;
+}
+
+.dark-mode {
+    .header-logo {
+        filter: invert(98%);
+    }
+    --color-black: #F8F8F8;
+    --color-blue: #1070ff;
+    --color-white: #000000;
+    --color-white2: #181818;
+    --color-gray: #363636;
+    --color-gray2: #f8f8f8;
+    --color-gray3: #909090;
+}
 
 @font-face {
     font-family: 'TT Norms';
@@ -121,7 +140,7 @@ li {
     width: 34%;
     height: 100vh;
     pointer-events: none;
-    background: $color-blue;
+    background: var(--color-blue);
     z-index: 999999999999999;
     transform: scale(1,0);
     transform-origin: top;
@@ -151,7 +170,7 @@ li {
     width: 100%;
     height: 100vh;
     pointer-events: none;
-    background: $color-white;
+    background: var(--color-white);
     z-index: 999999999999999999;
     opacity: 1;
     &.load {
@@ -166,8 +185,8 @@ li {
 body {
     position: relative;
     margin: 0 auto;
-    color: $color-black;
-    background: $color-white;
+    color: var(--color-black);
+    background: var(--color-white);
     font-family: "TT Norms", "Noto Sans JP", sans-serif;
     font-size: 18px;
     font-weight: 500;
@@ -190,7 +209,7 @@ body {
     width: 120px;
     height: 120px;
     margin: 0 auto;
-    background: $color-black;
+    background: var(--color-black);
     border-radius: 100%;
     transition: transform cubic-bezier(0,.5,.5,1) .5s;
     @include md {
@@ -200,7 +219,7 @@ body {
     .arrow {
         text-align: center;
         line-height: 120px;
-        color: $color-white;
+        color: var(--color-white);
         transition: transform cubic-bezier(0,.5,.5,1) .5s;
         @include md {
             line-height: 80px;
@@ -215,7 +234,7 @@ header {
         height: 60px;
         position: fixed;
         top: 40px;
-        left: $width1;
+        left: var(--width1);
         transition: opacity .3s;
         @include md {
             height: 50px;
@@ -228,8 +247,13 @@ header {
         font-family: "inter", "Noto Sans JP", sans-serif;
         position: fixed;
         top: 60px;
-        right: $width1;
+        right: var(--width1);
         margin: 0;
+        .hide {
+            @include sm {
+                display: none;
+            }
+        }
         li {
             margin-left: 40px;
             display: inline-block;
@@ -240,6 +264,66 @@ header {
                 transition: all .3s;
                 &:hover {
                     opacity: .5;
+                }
+            }
+
+            input {
+                position: absolute;
+                right: 0;
+                top: 0;
+                margin: 0;
+                width: 48px;
+                height: 100%;
+                z-index: 5;
+                opacity: 0;
+                cursor: pointer;
+            }
+            .toggle-label {
+                width: 48px;
+                height: 28px;
+                background: #181818;
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 100px;
+                transition: 0.4s;
+                box-sizing: border-box;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    border-radius: 100%;
+                    left: 6px;
+                    top: 6px;
+                    z-index: 2;
+                    background: #f8f8f8;
+                    transition: 0.4s;
+                }
+                .toggle-light {
+                    position: absolute;
+                    width: 14px;
+                    height: 14px;
+                    left: 7px;
+                    top: 7px;
+                    z-index: 1;
+                }
+                .toggle-dark {
+                    position: absolute;
+                    width: 12px;
+                    height: 12px;
+                    right: 8px;
+                    top: 8px;
+                    z-index: 1;
+                }
+            }
+            input:checked {
+                +.toggle-label{
+                    background-color: #f8f8f8;
+                    &:after{
+                        left: 26px;
+                        background: #181818;
+                    }
                 }
             }
         }
@@ -300,7 +384,8 @@ header {
             position: relative;
             margin: 8vw 0;
             padding: 10px 100px;
-            background: #fff;
+            background: var(--color-white-f);
+            color: var(--color-black-f);
             @include md {
                 padding: 8px 80px;
             }
@@ -312,10 +397,10 @@ header {
     .main-title {
         position: relative;
         z-index: -2;
-        color: $color-blue;
+        color: var(--color-blue);
 
         :nth-child(1) p {
-            margin-left: $width1;
+            margin-left: var(--width1);
             animation: TitleAnim .8s .5s cubic-bezier(0,.7,.3,1) both;
         }
         :nth-child(2) p {
@@ -361,17 +446,17 @@ header {
             font-weight: 300;
         }
         .outline {
-            -webkit-text-stroke: 7px $color-blue;
+            -webkit-text-stroke: 7px var(--color-blue);
             letter-spacing: .06em;
             @include sm {
-                -webkit-text-stroke: 4px $color-blue;
+                -webkit-text-stroke: 4px var(--color-blue);
             }
         }
         .outline::before {
             content: '+DESIGN';
             position: absolute;
-            -webkit-text-stroke: 1px $color-white;
-            color: $color-white;
+            -webkit-text-stroke: 1px var(--color-white);
+            color: var(--color-white);
 
         }
         .italic {
@@ -381,7 +466,7 @@ header {
 }
 .about {
     position: relative;
-    background: #fff;
+    background: var(--color-white2);
     .about-top {
         position: absolute;
         display: inline-block;
@@ -450,15 +535,15 @@ header {
         }
     }
     .about-content {
-        padding: 200px $width1 300px 0;
+        padding: 200px var(--width1) 300px 0;
         max-width: 1600px;
         display: flex;
         align-items: center;
         @include md {
-            padding: 150px $width1 250px 0;
+            padding: 150px var(--width1) 250px 0;
         }
         @include sm {
-            padding: 100px $width1 150px;
+            padding: 100px var(--width1) 150px;
         }
         .content-img {
             position: relative;
@@ -466,7 +551,7 @@ header {
             height: 800px;
             margin-right: calc(20vw - 100px);
             overflow: hidden;
-            background: $color-white;
+            background: var(--color-white);
             @include md {
                 height: 700px;
             }
@@ -506,7 +591,7 @@ header {
             }
             .em {
                 font-size: 30px;
-                color: $color-blue;
+                color: var(--color-blue);
                 @include md {
                     font-size: 24px;
                 }
@@ -518,7 +603,7 @@ header {
     }
 }
 .projects {
-    padding: 0 $width1;
+    padding: 0 var(--width1);
     margin: 300px auto 250px;
     @include md {
         margin: 250px auto 200px;
@@ -630,9 +715,9 @@ header {
                 width: 200px;
             }
             .number {
-                color: $color-blue;
+                color: var(--color-blue);
                 padding-bottom: 30px;
-                border-bottom: solid 1px $color-gray;
+                border-bottom: solid 1px var(--color-gray);
                 @include sm {
                     padding-bottom: 20px;
                 }
@@ -646,7 +731,7 @@ header {
         }
         .parallax-txt {
             position: relative;
-            color: $color-gray2;
+            color: var(--color-gray2);
             font-size: 256px;
             font-weight: 300;
             white-space: nowrap;
@@ -663,7 +748,7 @@ header {
     }
 }
 .edz {
-    padding: 0 $width1;
+    padding: 0 var(--width1);
     margin: 250px auto;
     @include md {
         margin: 200px auto;
@@ -701,7 +786,7 @@ header {
                 overflow: hidden;
                 .number {
                     position: absolute;
-                    color: $color-white;
+                    color: var(--color-white);
                     margin: 10px 20px;
                     z-index: 1;
                 }
@@ -750,7 +835,7 @@ header {
     }
 }
 .members {
-    padding: 0 $width1;
+    padding: 0 var(--width1);
     margin: 250px auto 300px;
     @include md {
         margin: 200px auto 200px;
@@ -774,7 +859,7 @@ header {
             display: flex;
             align-items: center;
             padding: 50px 0;
-            border-bottom: solid 1px $color-gray;
+            border-bottom: solid 1px var(--color-gray);
             @include md {
                 padding: 40px 0;
             }
@@ -811,7 +896,7 @@ header {
                     }
                 }
                 .content-subtitle {
-                    color: $color-gray3;
+                    color: var(--color-gray3);
                     margin-left: 50px;
                     @include md {
                         margin-left: 30px;
@@ -829,15 +914,15 @@ header {
 }
 .contact {
     display: flex;
-    padding: 300px $width1 150px;
+    padding: 300px var(--width1) 150px;
     margin: 0 auto;
-    background: $color-black;
-    color: $color-white;
+    background: var(--color-black-f);
+    color: var(--color-white-f);
     @include md {
-        padding: 250px $width1 150px;
+        padding: 250px var(--width1) 150px;
     }
     @include sm {
-        padding: 150px $width1 150px;
+        padding: 150px var(--width1) 150px;
         flex-wrap: wrap;
     }
     .contact-title {
@@ -866,7 +951,7 @@ header {
                 left: 0;
                 width: 100%;
                 height: 3px;
-                background: $color-white;
+                background: var(--color-white-f);
                 transform: scale(0, 1);
                 transform-origin: right top;
                 transition: transform cubic-bezier(.7, 0, .3, 1) .8s;
@@ -880,11 +965,11 @@ header {
 }
 footer {
     height: 80px;
-    padding: 0 $width1;
+    padding: 0 var(--width1);
     margin-top: -80px;
     display: flex;
     align-items: center;
-    color: $color-white;
+    color: var(--color-white-f);
     .top {
         margin: 0 0 0 auto;
     }
@@ -905,7 +990,7 @@ footer {
         position: absolute;
         display: flex;
         width: 100vw;
-        padding-left: $width1;
+        padding-left: var(--width1);
         top: 50%;
         transform: translateY(-50%);
         .edz-title {
@@ -955,7 +1040,7 @@ footer {
                 ul {
                     margin-top: 90px;
                     line-height: 2;
-                    color: $color-gray;
+                    color: var(--color-gray);
                     @include sm {
                         margin-top: 30px;
                     }
@@ -965,7 +1050,7 @@ footer {
                             transition: all .3s;
                             animation: TitleAnim2 .8s cubic-bezier(0,.7,.3,1) both;
                             &:hover {
-                                color: $color-black;
+                                color: var(--color-black);
                             }
                         }
                         @for $i from 1 through 10 {
@@ -1008,7 +1093,7 @@ footer {
                 overflow: hidden;
                 .number {
                     position: absolute;
-                    color: $color-white;
+                    color: var(--color-white-f);
                     margin: 10px 20px;
                     z-index: 1;
                 }
@@ -1030,18 +1115,19 @@ footer {
             }
             .article-title {
                 margin-top: 30px;
+                white-space: nowrap;
             }
             .article-subtitle {
                 margin-top: 20px;
             }
         }
         .article-all {
-            margin: 120px 0 0 $width1;
+            margin: 120px 0 0 var(--width1);
             @include md {
-                margin: 100px 0 0 $width1;
+                margin: 100px 0 0 var(--width1);
             }
             @include sm {
-                margin: 80px 0 0 $width1;
+                margin: 80px 0 0 var(--width1);
             }
             .btn:hover {
                 transform: translateX(-10px) scale(1.1);
@@ -1062,14 +1148,14 @@ footer {
         margin-left: 150px;
         width: calc(100vw - 300px);
         transform-origin: 0% 50%;
-        background: #E0E0E0;
+        background: var(--color-gray);
         @include md {
             margin-left: 10vw;
             width: 80vw;
         }
     }
     #scrollbar-hrz {
-        background: #181818;
+        background: var(--color-black);
         z-index: 5;
         transition: transform .6s cubic-bezier(.3,.3,.2,1);
         transform: scale(0,1);
@@ -1087,13 +1173,13 @@ footer {
     }
 }
 .moving {
-    padding: 130px $width1 0;
+    padding: 130px var(--width1) 0;
     margin: 50px auto 0;
     @include md {
-        padding: 100px $width1 0;
+        padding: 100px var(--width1) 0;
     }
     @include sm {
-        padding: 80px $width1 0;
+        padding: 80px var(--width1) 0;
     }
     .moving-title {
         line-height: 2;
@@ -1107,17 +1193,17 @@ footer {
             line-height: 2.5;
         }
         .content-item {
-            color: $color-white;
+            color: var(--color-white);
             margin: 60px 0;
             .title {
                 position: relative;
                 display: inline-block;
                 background: rgba(0, 80, 255, 1);
-                border: solid 3px $color-blue;
+                border: solid 3px var(--color-blue);
                 padding: 12px 24px;
                 transition: all .3s;
                 &:hover {
-                    color: $color-blue;
+                    color: var(--color-blue);
                     background: rgba(0, 80, 255, 0);
                 }
             }

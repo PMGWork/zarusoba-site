@@ -12,6 +12,13 @@
             <nuxt-link v-if="$device.isDesktop" v-scroll-to="'#top'" to>Top</nuxt-link>
             <nuxt-link v-else v-scroll-to="{ el: '#top', container: '#scroll' }" to>Top</nuxt-link>
         </li>
+        <li class="toggle-switch">
+            <input type="checkbox" name="dark-mode" id="btn-dark-mode" class="toggle-input">
+            <div class="toggle-label">
+                <img class="toggle-light" src="~/assets/img/sun-regular.svg">
+                <img class="toggle-dark" src="~/assets/img/moon-solid.svg">
+            </div>
+        </li>
     </ul>
 </header>
 
@@ -70,6 +77,27 @@ export default {
         }
     },
     mounted(){
+        //Darkmode toggle
+        const btn = document.querySelector("#btn-dark-mode");
+
+        btn.addEventListener("change", () => {
+            if (btn.checked === true) {
+                document.body.classList.add("dark-mode");
+                localStorage.setItem('dark-mode-settings', 'dark');
+            } else {
+                document.body.classList.remove("dark-mode");
+                localStorage.setItem('dark-mode-settings', 'light');
+            }
+        });
+
+        if(localStorage.getItem('dark-mode-settings')==='dark') {
+            document.body.classList.add("dark-mode");
+        }else if (localStorage.getItem('dark-mode-settings')==='light') {
+        //light modeの時
+        }else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add("dark-mode");
+        }
+
         //Luxy
         luxy.cancel();
 
