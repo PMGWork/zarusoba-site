@@ -19,6 +19,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap' },
     ],
     script: [
       { src: 'https://unpkg.com/scrollbooster@2/dist/scrollbooster.min.js', defer: true },
