@@ -59,6 +59,13 @@ $media-sm: 560px;
     font-style: italic;
 }
 
+@font-face {
+	font-family: 'IBM-Plex-Sans-JP';
+	src: url('../font/IBMPlexSansJP-SemiBold.woff') format("woff");
+    font-weight: 500;
+    font-style: normal;
+}
+
 h1,h2,h3,h4,h5,h6 {
     font-weight: 500;
     margin: 0;
@@ -187,7 +194,7 @@ body {
     margin: 0 auto;
     color: var(--color-black);
     background: var(--color-white);
-    font-family: "TT Norms", "Noto Sans JP", sans-serif;
+    font-family: "TT Norms", "IBM-Plex-Sans-JP", sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 1.2;
@@ -203,7 +210,7 @@ body {
     }
 }
 .font {
-    font-family: "Inter", "Noto Sans JP", sans-serif;
+    font-family: "Inter", "IBM-Plex-Sans-JP", sans-serif;
 }
 .btn {
     width: 120px;
@@ -244,7 +251,7 @@ header {
         }
     }
     ul {
-        font-family: "inter", "Noto Sans JP", sans-serif;
+        font-family: "inter", "IBM-Plex-Sans-JP", sans-serif;
         position: fixed;
         top: 60px;
         right: var(--width1);
