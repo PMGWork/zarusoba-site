@@ -10,7 +10,7 @@
     <ul>
         <li class="hide"><nuxt-link v-scroll-to="'#about'" to>About</nuxt-link></li>
         <li class="hide"><nuxt-link v-scroll-to="'#projects'" to>Projects</nuxt-link></li>
-        <li class="hide"><nuxt-link v-scroll-to="'#contact'" to>Contact</nuxt-link></li>
+        <li class="hide"><nuxt-link v-scroll-to="'#members'" to>Members</nuxt-link></li>
         <li><nuxt-link to="/edz">+ EDZ</nuxt-link></li>
         <li class="toggle-switch">
             <input type="checkbox" name="dark-mode" id="btn-dark-mode" class="toggle-input">
@@ -206,7 +206,7 @@
             </div>
         </div>
     </div>
-    <div class="members">
+    <div id="members" class="members">
         <div class="members-title">
             <h6 class="number font">03</h6>
             <h2 class="title">Members</h2>
