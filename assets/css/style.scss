@@ -194,7 +194,7 @@ body {
     margin: 0 auto;
     color: var(--color-black);
     background: var(--color-white);
-    font-family: "TT Norms", "IBM-Plex-Sans-JP", sans-serif;
+    font-family: "TT Norms", "Noto Sans JP", sans-serif;
     font-size: 17px;
     font-weight: 500;
     line-height: 1.2;
@@ -210,7 +210,7 @@ body {
     }
 }
 .font {
-    font-family: "Inter", "IBM-Plex-Sans-JP", sans-serif;
+    font-family: "Inter", "Noto Sans JP", sans-serif;
 }
 .btn {
     width: 120px;
@@ -251,7 +251,7 @@ header {
         }
     }
     ul {
-        font-family: "inter", "IBM-Plex-Sans-JP", sans-serif;
+        font-family: "inter", "Noto Sans JP", sans-serif;
         position: fixed;
         top: 60px;
         right: var(--width1);
