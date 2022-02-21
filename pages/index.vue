@@ -269,7 +269,7 @@
                 </a>
                 <div class="title-block">
                     <h3 class="content-title">Sugar</h3>
-                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG</p>
+                    <p class="content-subtitle font">Member - Motion Graphics / 3DCG / XR Design</p>
                 </div>
             </div>
         </div>
